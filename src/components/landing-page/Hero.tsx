@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "./Button";
 import { CarOne, CarThree, CarTwo } from "@/assets/images";
+import Link from "next/link";
 
 export default function HeroSection() {
 	return (
@@ -19,11 +20,13 @@ export default function HeroSection() {
 						btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
 						btnType="button"
 					/>
-					<Button
-						btnContent="Login"
-						btnStyles="border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
-						btnType="button"
-					/>
+					<Link href="/login">
+						<Button
+							btnContent="Login"
+							btnStyles="border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
+							btnType="button"
+						/>
+					</Link>
 				</div>
 			</div>
 			<div className="w-full md:w-[40%] h-auto md:h-screen flex items-center justify-center gap-5 mb-[200px]">
