@@ -10,6 +10,12 @@ import WhiteIgIcon from "./whiteigicon.svg";
 import DotIcon from "./dotIcon.svg";
 import Avatar from "./avatar.svg";
 import Triangle from "./triangle.svg";
+import Phone from "./phone.svg";
+import Email from "./email.svg";
+import Address from "./address.svg";
+import Good from "./good.svg";
+import TickOn from "./tick-on.svg";
+import TickOff from "./tick-off.svg";
 
 export {
 	NavLogo,
@@ -24,4 +30,10 @@ export {
 	DotIcon,
 	Avatar,
 	Triangle,
+	Phone,
+	Email,
+	Address,
+	Good,
+	TickOn,
+	TickOff,
 };
