@@ -40,6 +40,7 @@ export default function Login() {
 					btnContent="Login"
 					btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[40px] w-full mt-10"
 					btnType="button"
+					handleSubmit={() => {}}
 				/>
 			</form>
 		</div>

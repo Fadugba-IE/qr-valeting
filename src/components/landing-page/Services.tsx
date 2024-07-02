@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { DotIcon, Good, TickOn } from "@/assets/icons";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,10 +11,16 @@ import {
 } from "@/components/ui/carousel";
 import { servicesInfo } from "@/data/services";
 import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 export default function Services() {
+	const router = useRouter();
+
 	return (
-		<div className="bg-white h-auto w-full px-14 py-14 text-customGreen relative">
+		<div
+			id="services"
+			className="bg-white h-auto w-full px-14 py-14 text-customGreen relative"
+		>
 			<div>
 				<Image src={DotIcon} alt="white-dot-grid" />
 				<h1 className="text-[50px] absolute top-[75px] left-[80px]">
@@ -107,6 +114,7 @@ export default function Services() {
 					btnContent="Book Service"
 					btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mt-8"
 					btnType="button"
+					handleSubmit={() => router.push("/book-service")}
 				/>
 			</div>
 		</div>
