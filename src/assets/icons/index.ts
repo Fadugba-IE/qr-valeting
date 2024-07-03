@@ -16,6 +16,8 @@ import Address from "./address.svg";
 import Good from "./good.svg";
 import TickOn from "./tick-on.svg";
 import TickOff from "./tick-off.svg";
+import Success from "./success.svg";
+import Dollar from "./dollar.svg";
 
 export {
 	NavLogo,
@@ -36,4 +38,6 @@ export {
 	Good,
 	TickOn,
 	TickOff,
+	Success,
+	Dollar,
 };

@@ -2,12 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NavLogo } from "@/assets/icons";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import MobileNav from "./MobileNav";
 import Button from "./Button";
 
 export default function Header() {
 	const pathName = usePathname();
+	const router = useRouter();
 
 	return (
 		<div className="w-full shadow-md px-14 py-2 flex items-center justify-between fixed z-10 bg-white">
@@ -17,9 +18,9 @@ export default function Header() {
 			<div className="hidden md:flex items-center gap-14">
 				<div className="flex items-center gap-8">
 					<Link
-						href="/"
+						href="#home"
 						className={`font-medium hover:text-lightGreen ${
-							pathName === "/"
+							pathName === "#home"
 								? "text-customGreen"
 								: "text-customBlack"
 						}`}
@@ -27,9 +28,9 @@ export default function Header() {
 						Home
 					</Link>
 					<Link
-						href="/about"
+						href="#about"
 						className={`font-medium hover:text-lightGreen ${
-							pathName === "/about"
+							pathName === "#about"
 								? "text-customGreen"
 								: "text-customBlack"
 						}`}
@@ -37,9 +38,9 @@ export default function Header() {
 						About us
 					</Link>
 					<Link
-						href="/services"
+						href="#services"
 						className={`font-medium hover:text-lightGreen ${
-							pathName === "/services"
+							pathName === "/#services"
 								? "text-customGreen"
 								: "text-customBlack"
 						}`}
@@ -51,6 +52,7 @@ export default function Header() {
 					btnStyles="bg-customGreen hover:bg-lightGreen px-4 py-2 rounded-3xl text-white cursor-pointer"
 					btnType="button"
 					btnContent="Book service"
+					handleSubmit={() => router.push("/book-service")}
 				/>
 			</div>
 			<MobileNav />

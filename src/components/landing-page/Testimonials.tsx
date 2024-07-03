@@ -3,7 +3,10 @@ import Image from "next/image";
 
 export default function Testimonials() {
 	return (
-		<div className="bg-white h-auto w-full px-14 py-14 text-customGreen relative">
+		<div
+			id="testimonials"
+			className="bg-white h-auto w-full px-14 py-14 text-customGreen relative"
+		>
 			<div className="">
 				<Image src={DotIcon} alt="white-dot-grid" />
 				<h1 className="text-[50px] absolute top-[75px] left-[80px]">

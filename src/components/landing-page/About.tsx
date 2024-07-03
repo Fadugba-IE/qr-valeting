@@ -3,7 +3,10 @@ import { AboutIcon, WhiteDotGrid } from "@/assets/icons";
 
 export default function AboutSection() {
 	return (
-		<div className="bg-customGreen h-auto w-full px-14 py-14 text-white relative">
+		<div
+			id="about"
+			className="bg-customGreen h-auto w-full px-14 py-14 text-white relative"
+		>
 			<div className="">
 				<Image src={WhiteDotGrid} alt="white-dot-grid" />
 				<h1 className="text-[50px] absolute top-[75px] left-[80px]">
