@@ -1,6 +1,5 @@
 import Footer from "@/components/landing-page/Footer";
 import Header from "@/components/landing-page/Header";
-import HeroSection from "@/components/landing-page/Hero";
 import BookServiceForm from "./_components/book-service-form";
 
 export default function BookService() {
