@@ -1,4 +1,5 @@
 import Button from "@/components/landing-page/Button";
+import Link from "next/link";
 
 export default function SignUp() {
 	return (
@@ -46,9 +47,20 @@ export default function SignUp() {
 						className="rounded-3xl h-[40px] border border-customGreen px-5"
 					/>
 				</div>
+				<div className="mt-8 flex justify-end">
+					<div className="text-sm">
+						Already have an account?{" "}
+						<Link
+							href="/login"
+							className="text-customGreen cursor-pointer"
+						>
+							Login
+						</Link>
+					</div>
+				</div>
 				<Button
 					btnContent="Login"
-					btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[40px] w-full mt-10"
+					btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[40px] w-full mt-5"
 					btnType="button"
 				/>
 			</form>
