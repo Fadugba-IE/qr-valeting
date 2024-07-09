@@ -75,16 +75,16 @@ export default function BookServiceForm() {
 	return (
 		<>
 			{step !== 5 && (
-				<div className="h-auto w-full pt-52 md:pt-40 px-14 pb-20 flex flex-col justify-around md:flex-row items-center">
+				<div className="h-auto w-full pt-[150px] md:pt-40 px-14 pb-20 flex flex-col justify-around md:flex-row items-center">
 					<div className="">
 						<div className="text-center flex flex-col gap-2">
 							<h1 className="text-3xl font-bold">Book a Wash</h1>
-							<p>
+							<p className="text-sm md:text-lg">
 								Please fill the form below to book a wash for
 								your car
 							</p>
 						</div>
-						<form className="h-auto flex md:flex-col w-[400px] md:w-[600px] gap-10 md:gap-0 bg-[#F9F9F9] rounded-3xl px-8 py-10 md:px-14 md:py-14 mt-5">
+						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-10 md:gap-0 bg-[#F9F9F9] rounded-3xl px-8 py-10 md:px-14 md:py-14 mt-5">
 							<div className="flex flex-col md:flex-row items-center gap-4">
 								<div
 									className={cn(
@@ -172,7 +172,7 @@ export default function BookServiceForm() {
 										<h1 className="text-xl font-bold">
 											Contact details
 										</h1>
-										<p className="text-[#6F6C90]">
+										<p className="text-[#6F6C90] text-sm md:text-lg">
 											Please fill out your contact details
 											here
 										</p>
@@ -181,7 +181,7 @@ export default function BookServiceForm() {
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
 												htmlFor="text"
-												className="text-customGreen font-medium"
+												className="text-customGreen font-medium text-sm md:text-lg"
 											>
 												Name
 											</label>
@@ -199,7 +199,7 @@ export default function BookServiceForm() {
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
 												htmlFor="email"
-												className="text-customGreen font-medium"
+												className="text-customGreen font-medium text-sm md:text-lg"
 											>
 												Email
 											</label>
@@ -219,7 +219,7 @@ export default function BookServiceForm() {
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
 												htmlFor="text"
-												className="text-customGreen font-medium"
+												className="text-customGreen font-medium text-sm md:text-lg"
 											>
 												Phone Number
 											</label>
@@ -237,7 +237,7 @@ export default function BookServiceForm() {
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
 												htmlFor="text"
-												className="text-customGreen font-medium"
+												className="text-customGreen font-medium text-sm md:text-lg"
 											>
 												Description
 											</label>
@@ -261,7 +261,7 @@ export default function BookServiceForm() {
 										<h1 className="text-xl font-bold">
 											Our Services
 										</h1>
-										<p className="text-[#6F6C90]">
+										<p className="text-[#6F6C90] text-sm md:text-lg">
 											Please select which service you are
 											interested in.
 										</p>
@@ -331,7 +331,7 @@ export default function BookServiceForm() {
 											Select your vehicle type and
 											date/time
 										</h1>
-										<p className="text-[#6F6C90]">
+										<p className="text-[#6F6C90] text-sm md:text-lg">
 											Please select your vehicle type and
 											date/time
 										</p>
@@ -437,24 +437,24 @@ export default function BookServiceForm() {
 							)}
 							{step === 4 && (
 								<div className="md:mt-10">
-									<div className="flex text-center flex-col md:gap-3">
+									<div className="flex text-center flex-col gap-1 md:gap-3">
 										<div className="flex justify-around">
 											<Image
 												src={Success}
 												alt="success-icon"
 											/>
 										</div>
-										<h1 className="text-xl font-bold">
+										<h1 className="text-lg md:text-xl font-bold">
 											Proceed to pay for your booking
 										</h1>
 									</div>
-									<div className="flex gap-3 flex-col md:flex-row justify-between md:mt-5">
+									<div className="flex gap-3 flex-col md:flex-row justify-between mt-3 md:mt-5">
 										<div className="flex flex-col gap-3">
 											<div className="flex flex-col gap-1">
 												<h2 className="font-bold">
 													Service -{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													{service}
 												</p>
 											</div>
@@ -462,7 +462,7 @@ export default function BookServiceForm() {
 												<h2 className="font-bold">
 													Date & time -{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													{formattedDate} -{" "}
 													{formattedTime}
 												</p>
@@ -471,7 +471,7 @@ export default function BookServiceForm() {
 												<h2 className="font-bold">
 													Description -{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													{bookingInfo.description}
 												</p>
 											</div>
@@ -480,7 +480,7 @@ export default function BookServiceForm() {
 													src={Dollar}
 													alt="dollar"
 												/>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													USD {amount}
 												</p>
 											</div>
@@ -490,7 +490,7 @@ export default function BookServiceForm() {
 												<h2 className="font-bold">
 													Name -{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													{bookingInfo.name}
 												</p>
 											</div>
@@ -498,7 +498,7 @@ export default function BookServiceForm() {
 												<h2 className="font-bold">
 													Email -{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													{bookingInfo.email}
 												</p>
 											</div>
@@ -506,7 +506,7 @@ export default function BookServiceForm() {
 												<h2 className="font-bold">
 													Vehicle type -{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													{vehicleType}
 												</p>
 											</div>
@@ -515,7 +515,7 @@ export default function BookServiceForm() {
 													Vehicle registration number
 													-{" "}
 												</h2>
-												<p className="text-customGreen">
+												<p className="text-customGreen text-sm md:text-lg">
 													1849294402
 												</p>
 											</div>
@@ -597,7 +597,7 @@ export default function BookServiceForm() {
 								currency: "usd",
 							}}
 						>
-							<CheckoutPage amount={amount} />
+							<CheckoutPage amount={amount ? amount : 0} />
 						</Elements>
 					</div>
 				</div>
