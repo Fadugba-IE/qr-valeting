@@ -9,7 +9,7 @@ export default function AboutSection() {
 		>
 			<div className="">
 				<Image src={WhiteDotGrid} alt="white-dot-grid" />
-				<h1 className="text-[50px] absolute top-[75px] left-[80px]">
+				<h1 className="text-[40px] md:text-[50px] absolute top-[85px] md:top-[75px] left-[80px]">
 					About Us
 				</h1>
 			</div>

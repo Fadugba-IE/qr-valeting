@@ -9,7 +9,7 @@ export default function Testimonials() {
 		>
 			<div className="">
 				<Image src={DotIcon} alt="white-dot-grid" />
-				<h1 className="text-[50px] absolute top-[75px] left-[80px]">
+				<h1 className="text-[40px] md:text-[50px] absolute top-[85px] md:top-[75px] left-[80px]">
 					Testimonials
 				</h1>
 			</div>

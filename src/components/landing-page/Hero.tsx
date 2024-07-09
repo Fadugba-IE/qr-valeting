@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Button from "./Button";
 import { CarOne, CarThree, CarTwo } from "@/assets/images";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
@@ -11,10 +10,10 @@ export default function HeroSection() {
 	return (
 		<div
 			id="home"
-			className="h-auto w-full pt-52 md:pt-40 px-14 flex flex-col md:flex-row items-center md:gap-6 gap-20"
+			className="h-auto w-full pt-[150px] md:pt-40 px-10 flex flex-col md:flex-row items-center md:gap-6 gap-20"
 		>
 			<div className="w-full md:w-[60%] h-auto md:h-screen">
-				<h1 className="text-[60px] md:text-[80px] text-customGreen leading-none">
+				<h1 className="text-[50px] md:text-[80px] text-customGreen leading-[55px] md:leading-none">
 					Washing your car has never{" "}
 					<span className="text-customBlack">been</span> easier.
 				</h1>
@@ -37,7 +36,7 @@ export default function HeroSection() {
 				</div>
 			</div>
 			<div className="w-full md:w-[40%] h-auto md:h-screen flex items-center justify-center gap-5 mb-[50px] md:mb-[200px]">
-				<Image src={CarOne} alt="car1" />
+				<Image src={CarOne} alt="car1" width={150} height={150} />
 				<div className="flex flex-col gap-5">
 					<Image src={CarTwo} alt="car2" />
 					<Image src={CarThree} alt="car3" />
