@@ -10,7 +10,7 @@ export default function HeroSection() {
 	return (
 		<div
 			id="home"
-			className="h-auto w-full pt-[150px] md:pt-40 px-10 flex flex-col md:flex-row items-center md:gap-6 gap-20"
+			className="h-auto w-full pt-[150px] md:pt-[100px] px-10 flex flex-col md:flex-row items-center md:gap-6 gap-20"
 		>
 			<div className="w-full md:w-[60%] h-auto md:h-screen">
 				<h1 className="text-[50px] md:text-[80px] text-customGreen leading-[55px] md:leading-none">
@@ -38,8 +38,8 @@ export default function HeroSection() {
 			<div className="w-full md:w-[40%] h-auto md:h-screen flex items-center justify-center gap-5 mb-[50px] md:mb-[200px]">
 				<Image src={CarOne} alt="car1" width={150} height={150} />
 				<div className="flex flex-col gap-5">
-					<Image src={CarTwo} alt="car2" />
-					<Image src={CarThree} alt="car3" />
+					<Image src={CarTwo} alt="car2" width={150} height={150} />
+					<Image src={CarThree} alt="car3" width={180} height={150} />
 				</div>
 			</div>
 		</div>

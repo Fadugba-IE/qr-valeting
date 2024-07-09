@@ -8,7 +8,7 @@ import Services from "@/components/landing-page/Services";
 
 export default function Home() {
 	return (
-		<main className="min-h-screen w-full">
+		<main className="h-auto w-full">
 			<Header />
 			<HeroSection />
 			<AboutSection />

@@ -75,8 +75,8 @@ export default function BookServiceForm() {
 	return (
 		<>
 			{step !== 5 && (
-				<div className="h-auto w-full pt-[150px] md:pt-40 px-14 pb-20 flex flex-col justify-around md:flex-row items-center">
-					<div className="">
+				<div className="h-auto w-full pt-[150px] md:pt-40 px-10 md:px-20 pb-20 flex flex-col justify-around md:flex-row items-center">
+					<div className="w-auto">
 						<div className="text-center flex flex-col gap-2">
 							<h1 className="text-3xl font-bold">Book a Wash</h1>
 							<p className="text-sm md:text-lg">
@@ -84,7 +84,7 @@ export default function BookServiceForm() {
 								your car
 							</p>
 						</div>
-						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-10 md:gap-0 bg-[#F9F9F9] rounded-3xl px-8 py-10 md:px-14 md:py-14 mt-5">
+						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-8 md:gap-0 bg-[#F9F9F9] rounded-none md:rounded-3xl px-8 py-10 md:px-14 md:py-14 mt-5">
 							<div className="flex flex-col md:flex-row items-center gap-4">
 								<div
 									className={cn(
@@ -258,7 +258,7 @@ export default function BookServiceForm() {
 							{step === 2 && (
 								<div className="md:mt-10">
 									<div className="flex flex-col md:gap-3">
-										<h1 className="text-xl font-bold">
+										<h1 className="text-lg md:text-xl font-bold">
 											Our Services
 										</h1>
 										<p className="text-[#6F6C90] text-sm md:text-lg">
@@ -269,7 +269,7 @@ export default function BookServiceForm() {
 									<div className="flex flex-wrap justify-between gap-5 mt-6">
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												service === "Handwash" &&
 													"border-2 border-customGreen"
 											)}
@@ -283,7 +283,7 @@ export default function BookServiceForm() {
 										</button>
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												service === "Mini valet" &&
 													"border-2 border-customGreen"
 											)}
@@ -297,7 +297,7 @@ export default function BookServiceForm() {
 										</button>
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												service === "Full valet" &&
 													"border-2 border-customGreen"
 											)}
@@ -311,7 +311,7 @@ export default function BookServiceForm() {
 										</button>
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												service === "Other" &&
 													"border-2 border-customGreen"
 											)}
@@ -339,7 +339,7 @@ export default function BookServiceForm() {
 									<div className="flex flex-wrap justify-between gap-5 mt-6">
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												vehicleType === "Car" &&
 													"border-2 border-customGreen"
 											)}
@@ -353,7 +353,7 @@ export default function BookServiceForm() {
 										</button>
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												vehicleType === "SUV" &&
 													"border-2 border-customGreen"
 											)}
@@ -367,7 +367,7 @@ export default function BookServiceForm() {
 										</button>
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												vehicleType === "Van" &&
 													"border-2 border-customGreen"
 											)}
@@ -381,7 +381,7 @@ export default function BookServiceForm() {
 										</button>
 										<button
 											className={cn(
-												"bg-white w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
 												vehicleType === "Caravan" &&
 													"border-2 border-customGreen"
 											)}
@@ -436,7 +436,7 @@ export default function BookServiceForm() {
 								</div>
 							)}
 							{step === 4 && (
-								<div className="md:mt-10">
+								<div className="mt-5 md:mt-10">
 									<div className="flex text-center flex-col gap-1 md:gap-3">
 										<div className="flex justify-around">
 											<Image
@@ -537,7 +537,7 @@ export default function BookServiceForm() {
 							)}
 						</form>
 						{(step === 2 || step === 3) && (
-							<div className="flex items-center justify-between mt-10">
+							<div className="flex items-center justify-between mt-5 md:mt-10">
 								<Button
 									btnContent="Previous"
 									btnStyles="border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
@@ -557,10 +557,10 @@ export default function BookServiceForm() {
 							</div>
 						)}
 						{step === 1 && (
-							<div className="flex items-center justify-end mt-5">
+							<div className="flex items-center justify-end mt-3 md:mt-5">
 								<Button
 									btnContent="Next Step"
-									btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
+									btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mr-3"
 									btnType="button"
 									handleSubmit={() =>
 										setStep((prevStep) => prevStep + 1)
