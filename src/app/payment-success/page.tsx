@@ -12,7 +12,7 @@ export default function PaymentSuccess() {
 				<div className="hidden md:flex w-1/2">
 					<Image src={Payment} alt="payment-pic" />
 				</div>
-				<div className="w-full md:w-1/2 px-20 py-10 mt-5">
+				<div className="w-full md:w-1/2 px-10 md:px-20 py-10 mt-5">
 					<div className="">
 						<h1 className="text-2xl">PAYMENT SUCCESSFUL</h1>
 						<div className="">
