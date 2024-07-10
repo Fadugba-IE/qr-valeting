@@ -84,7 +84,7 @@ export default function BookServiceForm() {
 								your car
 							</p>
 						</div>
-						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-8 md:gap-0 bg-[#F9F9F9] rounded-none md:rounded-3xl px-8 py-10 md:px-14 md:py-14 mt-5">
+						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-8 md:gap-0 bg-[#F9F9F9] rounded-2xl md:rounded-3xl px-5 py-10 md:px-14 md:py-14 mt-5">
 							<div className="flex flex-col md:flex-row items-center gap-4">
 								<div
 									className={cn(
@@ -437,21 +437,21 @@ export default function BookServiceForm() {
 							)}
 							{step === 4 && (
 								<div className="mt-5 md:mt-10">
-									<div className="flex text-center flex-col gap-1 md:gap-3">
+									<div className="flex text-center flex-col gap-2 md:gap-3">
 										<div className="flex justify-around">
 											<Image
 												src={Success}
 												alt="success-icon"
 											/>
 										</div>
-										<h1 className="text-lg md:text-xl font-bold">
+										<h1 className="text-sm md:text-xl font-bold">
 											Proceed to pay for your booking
 										</h1>
 									</div>
 									<div className="flex gap-3 flex-col md:flex-row justify-between mt-3 md:mt-5">
 										<div className="flex flex-col gap-3">
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold ">
 													Service -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
@@ -459,7 +459,7 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold">
 													Date & time -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
@@ -468,7 +468,7 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold">
 													Description -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
@@ -487,7 +487,7 @@ export default function BookServiceForm() {
 										</div>
 										<div className="flex flex-col gap-3">
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold">
 													Name -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
@@ -495,7 +495,7 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold">
 													Email -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
@@ -503,7 +503,7 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold">
 													Vehicle type -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
@@ -511,7 +511,7 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
-												<h2 className="font-bold">
+												<h2 className="text-sm md:text-lg font-bold">
 													Vehicle registration number
 													-{" "}
 												</h2>
@@ -540,7 +540,7 @@ export default function BookServiceForm() {
 							<div className="flex items-center justify-between mt-5 md:mt-10">
 								<Button
 									btnContent="Previous"
-									btnStyles="border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
+									btnStyles="text-sm md:text-lg border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
 									btnType="button"
 									handleSubmit={() =>
 										setStep((prevStep) => prevStep - 1)
@@ -548,7 +548,7 @@ export default function BookServiceForm() {
 								/>
 								<Button
 									btnContent="Next step"
-									btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
+									btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
 									btnType="button"
 									handleSubmit={() =>
 										setStep((prevStep) => prevStep + 1)
@@ -560,7 +560,7 @@ export default function BookServiceForm() {
 							<div className="flex items-center justify-end mt-3 md:mt-5">
 								<Button
 									btnContent="Next Step"
-									btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mr-3"
+									btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mr-3"
 									btnType="button"
 									handleSubmit={() =>
 										setStep((prevStep) => prevStep + 1)
@@ -572,7 +572,7 @@ export default function BookServiceForm() {
 							<div className="flex items-center justify-start mt-5">
 								<Button
 									btnContent="Previous"
-									btnStyles="border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
+									btnStyles="text-sm md:text-lg border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
 									btnType="button"
 									handleSubmit={() =>
 										setStep((prevStep) => prevStep - 1)
