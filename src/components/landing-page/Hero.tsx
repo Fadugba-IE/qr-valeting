@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "./Button";
 import { CarOne, CarThree, CarTwo } from "@/assets/images";
 import { useRouter } from "next/navigation";
+import { DotIcon } from "@/assets/icons";
 
 export default function HeroSection() {
 	const router = useRouter();
@@ -10,13 +11,13 @@ export default function HeroSection() {
 	return (
 		<div
 			id="home"
-			className="h-auto w-full pt-[150px] md:pt-[100px] px-10 flex flex-col md:flex-row items-center md:gap-6 gap-20"
+			className=" w-full pt-[150px] md:pt-[180px] md:pb-[100px] px-10 md:px-14 flex flex-col md:flex-row items-center justify-between md:gap-6 gap-10"
 		>
-			<div className="w-full md:w-[60%] h-auto md:h-screen">
-				<h1 className="text-[50px] md:text-[80px] text-customGreen leading-[55px] md:leading-none">
+			<div className="w-full md:w-[60%] h-auto">
+				<div className="text-[50px] md:text-[80px] text-customGreen leading-[55px] md:leading-none">
 					Washing your car has never{" "}
 					<span className="text-customBlack">been</span> easier.
-				</h1>
+				</div>
 				<p className="text-[30px] md:text-[40px] md:leading-none mt-10 md:w-[550px]">
 					We providing high-quality car wash services.
 				</p>
@@ -35,7 +36,7 @@ export default function HeroSection() {
 					/>
 				</div>
 			</div>
-			<div className="w-full md:w-[40%] h-auto md:h-screen flex items-center justify-center gap-5 mb-[50px] md:mb-[200px]">
+			<div className="w-full md:w-[40%] h-auto flex items-center justify-center gap-5 mb-[50px] md:mb-[20px]">
 				<Image src={CarOne} alt="car1" width={150} height={150} />
 				<div className="flex flex-col gap-5">
 					<Image src={CarTwo} alt="car2" width={150} height={150} />
