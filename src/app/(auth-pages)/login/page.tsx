@@ -1,17 +1,18 @@
 "use client";
 import { useState } from "react";
-import Button from "@/components/landing-page/Button";
-import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { cn } from "@/lib/utils";
 import { z } from "zod";
-import Spinner from "../_components/Spinner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
+import Button from "@/components/landing-page/Button";
+import Spinner from "../_components/Spinner";
 
 export default function Login() {
 	const { toast } = useToast();
 	const [isLoading, setIsLoading] = useState<boolean>();
+
 	const schema = z.object({
 		emailAddress: z
 			.string()
@@ -40,7 +41,7 @@ export default function Login() {
 		resolver: zodResolver(schema),
 	});
 
-	const watchAllFields = watch(); // Watch all fields
+	const watchAllFields = watch();
 
 	const isButtonDisabled =
 		!watchAllFields.emailAddress ||
@@ -60,10 +61,10 @@ export default function Login() {
 	};
 
 	return (
-		<div className="h-screen w-full bg-customGreen flex justify-around items-center">
+		<div className="h-screen w-full bg-customGreen flex justify-around items-center px-5">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="h-auto w-[450px] bg-white rounded-xl px-14 py-14"
+				className="h-auto w-[450px] bg-white rounded-xl px-8 md:px-14 py-14"
 			>
 				<h2 className="text-center text-xl font-semibold">
 					Login to your account
@@ -78,9 +79,9 @@ export default function Login() {
 					<input
 						{...register("emailAddress")}
 						name="emailAddress"
-						type="text"
-						placeholder="tim@gmail.com"
-						className="text-sm rounded-3xl h-[40px] border border-customGreen px-5"
+						type="email"
+						placeholder="Enter a valid email address"
+						className="text-sm rounded-3xl h-[40px] border border-customGreen px-5 placeholder:text-sm"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -90,7 +91,7 @@ export default function Login() {
 				</div>
 				<div className="mt-5 flex flex-col gap-2">
 					<label
-						htmlFor="email"
+						htmlFor="password"
 						className="text-customGreen font-medium"
 					>
 						Password
@@ -98,9 +99,9 @@ export default function Login() {
 					<input
 						{...register("password")}
 						name="password"
-						type="text"
+						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-3xl h-[40px] border border-customGreen px-5"
+						className="text-sm rounded-3xl h-[40px] border border-customGreen px-5 placeholder:text-sm"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">
@@ -116,7 +117,7 @@ export default function Login() {
 						Forgot password?
 					</Link>
 				</div>
-				<div className="mt-1 flex justify-end">
+				<div className="mt-2 flex justify-end">
 					<div className="text-sm">
 						Don't have an account?{" "}
 						<Link

@@ -75,16 +75,16 @@ export default function BookServiceForm() {
 	return (
 		<>
 			{step !== 5 && (
-				<div className="h-auto w-full pt-[150px] md:pt-40 px-10 md:px-20 pb-20 flex flex-col justify-around md:flex-row items-center">
+				<div className="h-auto w-full pt-[150px] md:pt-40 md:px-20 pb-20 flex flex-col justify-around md:flex-row items-center">
 					<div className="w-auto">
-						<div className="text-center flex flex-col gap-2">
+						<div className="text-center flex flex-col gap-2 px-4">
 							<h1 className="text-3xl font-bold">Book a Wash</h1>
 							<p className="text-sm md:text-lg">
 								Please fill the form below to book a wash for
 								your car
 							</p>
 						</div>
-						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-8 md:gap-0 bg-[#F9F9F9] rounded-2xl md:rounded-3xl px-5 py-10 md:px-14 md:py-14 mt-5">
+						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-4 md:gap-0 bg-[#F9F9F9] rounded-2xl md:rounded-3xl px-5 py-10 md:px-14 md:py-14 mt-5">
 							<div className="flex flex-col md:flex-row items-center gap-4">
 								<div
 									className={cn(
@@ -394,7 +394,7 @@ export default function BookServiceForm() {
 											Caravan
 										</button>
 									</div>
-									<div className="flex items-center md:justify-center gap-2 mt-8">
+									<div className="flex flex-col md:flex-row mr-4 items-center md:justify-center gap-2 mt-8">
 										<Popover>
 											<PopoverTrigger asChild>
 												<ShadBtn
@@ -436,7 +436,7 @@ export default function BookServiceForm() {
 								</div>
 							)}
 							{step === 4 && (
-								<div className="mt-5 md:mt-10">
+								<div className="md:mt-10">
 									<div className="flex text-center flex-col gap-2 md:gap-3">
 										<div className="flex justify-around">
 											<Image
@@ -524,7 +524,7 @@ export default function BookServiceForm() {
 									<div className="flex justify-center mt-4">
 										<Button
 											btnContent="Proceed to pay"
-											btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
+											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
 											btnType="button"
 											handleSubmit={() =>
 												setStep(
