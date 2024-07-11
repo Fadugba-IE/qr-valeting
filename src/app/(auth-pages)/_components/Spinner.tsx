@@ -1,12 +1,12 @@
 export default function Spinner() {
 	return (
-		<div className="grid h-auto w-auto place-items-center overflow-x-scroll rounded-lg lg:overflow-visible">
+		<div className="grid h-auto w-auto place-items-center overflow-x-hidden rounded-lg lg:overflow-visible">
 			<svg
 				className="text-gray-300 animate-spin"
 				viewBox="0 0 64 64"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				width="24"
+				width="22"
 				height="24"
 			>
 				<path
