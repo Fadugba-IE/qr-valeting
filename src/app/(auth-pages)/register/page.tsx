@@ -68,7 +68,7 @@ export default function SignUp() {
 		<div className="h-[100vh] md:h-[130vh] w-full bg-customGreen flex justify-around items-center px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="h-auto w-[300px] md:w-[450px] bg-white rounded-3xl md:rounded-xl px-6 md:px-14 py-8 md:py-14"
+				className="h-auto w-[300px] md:w-[450px] bg-white rounded-3xl md:rounded-xl px-8 md:px-14 py-8 md:py-14"
 			>
 				<div className="flex justify-center">
 					<Image src={NavLogo} alt="logo" className="" />
@@ -88,7 +88,7 @@ export default function SignUp() {
 						name="fullName"
 						type="text"
 						placeholder="Enter your full name"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 placeholder:text-sm"
+						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
 					/>
 					{errors.fullName && (
 						<p className="text-sm text-red-500">
@@ -108,7 +108,7 @@ export default function SignUp() {
 						name="emailAddress"
 						type="email"
 						placeholder="Enter a valid email"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 placeholder:text-sm"
+						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -128,7 +128,7 @@ export default function SignUp() {
 						name="password"
 						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 placeholder:text-sm"
+						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">

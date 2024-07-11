@@ -43,10 +43,12 @@ export default function BookServiceForm() {
 	};
 
 	const [bookingInfo, setBookingInfo] = useState({
-		name: "",
+		firstName: "",
+		lastName: "",
 		email: "",
 		phoneNumber: "",
 		description: "",
+		vehicleRegNo: "",
 	});
 
 	const [service, setService] = useState("");
@@ -65,26 +67,26 @@ export default function BookServiceForm() {
 	const amount = selectPrice(service);
 
 	const handleSubmit = () => {
-		const serviceData = {
-			fullName: bookingInfo.name,
-			emailAddress: bookingInfo.email,
-			phoneNumber: bookingInfo.email,
-			description: bookingInfo.description,
-			service: service,
-			vehicleType: vehicleType,
-			bookedDate: formattedDate,
-			bookedTime: formattedTime,
-			vehicleRegNo: 777896543,
+		const bookingData = {
+			firstName: bookingInfo.firstName,
+			lastName: bookingInfo.lastName,
+			email: bookingInfo.email,
+			phoneNumber: bookingInfo.phoneNumber,
 			amount: amount,
+			additionalInfo: bookingInfo.description,
+			vehicleRegistrationNumber: bookingInfo.vehicleRegNo,
+			serviceType: service,
+			carType: vehicleType,
+			date: formattedDate,
+			time: formattedTime,
 		};
-		const apiData = JSON.stringify(serviceData);
-		console.log(apiData);
+		console.log(bookingData);
 	};
 
 	return (
 		<>
 			{step !== 5 && (
-				<div className="h-auto w-full pt-[150px] md:pt-40 md:px-20 pb-20 flex flex-col justify-around md:flex-row items-center">
+				<div className="h-auto w-full pt-[150px] px-5 md:pt-40 md:px-20 pb-20 flex flex-col justify-around md:flex-row items-center">
 					<div className="w-auto">
 						<div className="text-center flex flex-col gap-2 px-4">
 							<h1 className="text-3xl font-bold">Book a Wash</h1>
@@ -93,7 +95,7 @@ export default function BookServiceForm() {
 								your car
 							</p>
 						</div>
-						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-4 md:gap-0 bg-[#F9F9F9] rounded-2xl md:rounded-3xl px-5 py-10 md:px-14 md:py-14 mt-5">
+						<form className="h-auto flex md:flex-col w-auto md:w-[600px] gap-8 md:gap-0 bg-[#F9F9F9] rounded-2xl md:rounded-3xl px-5 py-10 md:px-14 md:py-14 mt-5">
 							<div className="flex flex-col md:flex-row items-center gap-4">
 								<div
 									className={cn(
@@ -192,19 +194,39 @@ export default function BookServiceForm() {
 												htmlFor="text"
 												className="text-customGreen font-medium text-sm md:text-lg"
 											>
-												Name
+												First name
 											</label>
 											<input
-												name="name"
+												name="firstName"
 												type="text"
-												placeholder="John Doe"
-												className="rounded-3xl h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
-												value={bookingInfo.name}
+												placeholder="Enter your first name"
+												className="rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
+												value={bookingInfo.firstName}
 												onChange={
 													handleBookingInfoChange
 												}
 											/>
 										</div>
+										<div className="flex flex-col gap-2 w-full md:w-[45%]">
+											<label
+												htmlFor="text"
+												className="text-customGreen font-medium text-sm md:text-lg"
+											>
+												Last name
+											</label>
+											<input
+												name="lastName"
+												type="text"
+												placeholder="Enter your last name"
+												className="rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
+												value={bookingInfo.lastName}
+												onChange={
+													handleBookingInfoChange
+												}
+											/>
+										</div>
+									</div>
+									<div className="w-full flex flex-col gap-4 md:gap-0 md:flex-row justify-between mt-2 md:mt-10">
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
 												htmlFor="email"
@@ -215,9 +237,27 @@ export default function BookServiceForm() {
 											<input
 												name="email"
 												type="text"
-												placeholder="johndoe@gmail.com"
-												className="rounded-3xl h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
+												placeholder="Enter a valid email"
+												className="rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
 												value={bookingInfo.email}
+												onChange={
+													handleBookingInfoChange
+												}
+											/>
+										</div>
+										<div className="flex flex-col gap-2 w-full md:w-[45%]">
+											<label
+												htmlFor="text"
+												className="text-customGreen font-medium text-sm md:text-lg"
+											>
+												Phone Number
+											</label>
+											<input
+												name="phoneNumber"
+												type="text"
+												placeholder="Enter your phone number"
+												className="rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
+												value={bookingInfo.phoneNumber}
 												onChange={
 													handleBookingInfoChange
 												}
@@ -230,14 +270,14 @@ export default function BookServiceForm() {
 												htmlFor="text"
 												className="text-customGreen font-medium text-sm md:text-lg"
 											>
-												Phone Number
+												Description
 											</label>
 											<input
-												name="phoneNumber"
+												name="description"
 												type="text"
-												placeholder="(123)456 - 7890"
-												className="rounded-3xl h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
-												value={bookingInfo.phoneNumber}
+												placeholder="e.g. wash gently"
+												className="rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
+												value={bookingInfo.description}
 												onChange={
 													handleBookingInfoChange
 												}
@@ -248,14 +288,14 @@ export default function BookServiceForm() {
 												htmlFor="text"
 												className="text-customGreen font-medium text-sm md:text-lg"
 											>
-												Description
+												Vehicle Registration No
 											</label>
 											<input
-												name="description"
+												name="vehicleRegNo"
 												type="text"
-												placeholder="please make the car clean"
-												className="rounded-3xl h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
-												value={bookingInfo.description}
+												placeholder="e.g. BD51SMR"
+												className="rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-5 text-[12px] placeholder:text-[12px]"
+												value={bookingInfo.vehicleRegNo}
 												onChange={
 													handleBookingInfoChange
 												}
@@ -460,6 +500,14 @@ export default function BookServiceForm() {
 									<div className="flex gap-3 flex-col md:flex-row justify-between mt-3 md:mt-5">
 										<div className="flex flex-col gap-3">
 											<div className="flex flex-col gap-1">
+												<h2 className="text-sm md:text-lg font-bold">
+													Firstname -{" "}
+												</h2>
+												<p className="text-customGreen text-sm md:text-lg">
+													{bookingInfo.firstName}
+												</p>
+											</div>
+											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold ">
 													Service -{" "}
 												</h2>
@@ -497,10 +545,10 @@ export default function BookServiceForm() {
 										<div className="flex flex-col gap-3">
 											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold">
-													Name -{" "}
+													Lastname -{" "}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
-													{bookingInfo.name}
+													{bookingInfo.lastName}
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
@@ -522,7 +570,7 @@ export default function BookServiceForm() {
 											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold">
 													Vehicle registration number
-													-{" "}
+													-{bookingInfo.vehicleRegNo}
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
 													1849294402
@@ -533,7 +581,7 @@ export default function BookServiceForm() {
 									<div className="flex justify-center mt-4">
 										<Button
 											btnContent="Proceed to pay"
-											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
+											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] px-12"
 											btnType="button"
 											handleSubmit={() => {
 												handleSubmit();
