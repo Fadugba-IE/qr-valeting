@@ -8,10 +8,12 @@ import { useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import Button from "@/components/landing-page/Button";
 import Spinner from "../_components/Spinner";
+import Image from "next/image";
+import { NavLogo } from "@/assets/icons";
 
 export default function Login() {
 	const { toast } = useToast();
-	const [isLoading, setIsLoading] = useState<boolean>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const schema = z.object({
 		emailAddress: z
@@ -51,28 +53,31 @@ export default function Login() {
 	const onSubmit = (data: any) => {
 		setIsLoading(true);
 		console.log(data);
-		reset();
 		setTimeout(() => {
 			setIsLoading(false);
 			toast({
 				description: "Login successful",
 			});
+			reset();
 		}, 5000);
 	};
 
 	return (
-		<div className="h-screen w-full bg-customGreen flex justify-around items-center px-5">
+		<div className="h-screen w-full bg-customGreen flex justify-around items-center px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="h-auto w-[450px] bg-white rounded-xl px-8 md:px-14 py-14"
+				className="h-auto w-[300px] md:w-[450px] bg-white rounded-3xl md:rounded-xl px-8 md:px-14 py-8 md:py-14"
 			>
-				<h2 className="text-center text-xl font-semibold">
+				<div className="flex justify-center">
+					<Image src={NavLogo} alt="logo" priority />
+				</div>
+				<h2 className="text-center text-lg md:text-xl font-semibold">
 					Login to your account
 				</h2>
 				<div className="mt-5 flex flex-col gap-2">
 					<label
 						htmlFor="email"
-						className="text-customGreen font-medium"
+						className="text-customGreen font-medium text-sm md:text-lg"
 					>
 						Email
 					</label>
@@ -80,8 +85,8 @@ export default function Login() {
 						{...register("emailAddress")}
 						name="emailAddress"
 						type="email"
-						placeholder="Enter a valid email address"
-						className="text-sm rounded-3xl h-[40px] border border-customGreen px-5 placeholder:text-sm"
+						placeholder="Enter a valid email"
+						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -101,7 +106,7 @@ export default function Login() {
 						name="password"
 						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-3xl h-[40px] border border-customGreen px-5 placeholder:text-sm"
+						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">
@@ -132,7 +137,7 @@ export default function Login() {
 				<Button
 					btnContent={isLoading ? <Spinner /> : "Login"}
 					btnStyles={cn(
-						"bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[40px] w-full mt-5",
+						"bg-customGreen hover:bg-lightGreen text-sm md:text-lg text-white rounded-3xl cursor-pointer h-[40px] w-full mt-5",
 						isButtonDisabled && "opacity-25"
 					)}
 					btnType="submit"
