@@ -62,15 +62,24 @@ export default function BookServiceForm() {
 		setBookingInfo((prev) => ({ ...prev, [name]: value }));
 	};
 
-	console.log(formattedDate);
-	console.log(formattedTime);
-	console.log(bookingInfo);
-	console.log(service);
-	console.log(vehicleType);
-
 	const amount = selectPrice(service);
 
-	const handleSubmit = () => {};
+	const handleSubmit = () => {
+		const serviceData = {
+			fullName: bookingInfo.name,
+			emailAddress: bookingInfo.email,
+			phoneNumber: bookingInfo.email,
+			description: bookingInfo.description,
+			service: service,
+			vehicleType: vehicleType,
+			bookedDate: formattedDate,
+			bookedTime: formattedTime,
+			vehicleRegNo: 777896543,
+			amount: amount,
+		};
+		const apiData = JSON.stringify(serviceData);
+		console.log(apiData);
+	};
 
 	return (
 		<>
@@ -526,11 +535,12 @@ export default function BookServiceForm() {
 											btnContent="Proceed to pay"
 											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
 											btnType="button"
-											handleSubmit={() =>
+											handleSubmit={() => {
+												handleSubmit();
 												setStep(
 													(prevStep) => prevStep + 1
-												)
-											}
+												);
+											}}
 										/>
 									</div>
 								</div>
