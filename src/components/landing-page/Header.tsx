@@ -18,9 +18,9 @@ export default function Header() {
 			<div className="hidden md:flex items-center gap-14">
 				<div className="flex items-center gap-8">
 					<Link
-						href="#home"
+						href="/#home"
 						className={`font-medium hover:text-lightGreen ${
-							pathName === "#home"
+							pathName === "/#home"
 								? "text-customGreen"
 								: "text-customBlack"
 						}`}
@@ -28,9 +28,9 @@ export default function Header() {
 						Home
 					</Link>
 					<Link
-						href="#about"
+						href="/#about"
 						className={`font-medium hover:text-lightGreen ${
-							pathName === "#about"
+							pathName === "/#about"
 								? "text-customGreen"
 								: "text-customBlack"
 						}`}
@@ -38,7 +38,7 @@ export default function Header() {
 						About us
 					</Link>
 					<Link
-						href="#services"
+						href="/#services"
 						className={`font-medium hover:text-lightGreen ${
 							pathName === "/#services"
 								? "text-customGreen"
