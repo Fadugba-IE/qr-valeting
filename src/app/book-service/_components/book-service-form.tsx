@@ -21,6 +21,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutPage from "@/components/CheckoutPage";
 import { Payment } from "@/assets/images";
+import { useToast } from "@/components/ui/use-toast";
+import moment from "moment";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
 	throw new Error("NEXT_PUBLIC_STRIPE_KEY is not defined");
@@ -31,15 +33,27 @@ const stripePromise = loadStripe(
 );
 
 export default function BookServiceForm() {
+	const { toast } = useToast();
 	// const amount = 49.99;
 
 	const [date, setDate] = useState<Date>();
 	const [step, setStep] = useState(1);
-	const [time, setTime] = useState<string | string[]>("10:00");
+	const [time, setTime] = useState<string | string[]>("");
 
 	const onChange: TimePickerProps["onChange"] = (time, timeString) => {
-		console.log(time, timeString);
-		setTime(timeString);
+		const selectedTime = moment(timeString, "hh:mm:ss A");
+		const startTime = moment("9:00:00 AM", "hh:mm:ss A");
+		const endTime = moment("4:00:00 PM", "hh:mm:ss A");
+
+		if (selectedTime.isBetween(startTime, endTime, undefined, "[]")) {
+			setTime(timeString);
+		} else {
+			toast({
+				variant: "destructive",
+				description:
+					"Please select a time between 9:00:00 AM and 4:00:00 PM",
+			});
+		}
 	};
 
 	const [bookingInfo, setBookingInfo] = useState({
@@ -83,6 +97,57 @@ export default function BookServiceForm() {
 		console.log(bookingData);
 	};
 
+	const validateStepOne = () => {
+		if (
+			!bookingInfo.firstName ||
+			!bookingInfo.lastName ||
+			!bookingInfo.email ||
+			!bookingInfo.phoneNumber ||
+			!bookingInfo.description ||
+			!bookingInfo.vehicleRegNo
+		) {
+			toast({
+				variant: "destructive",
+				description: "All fields are required!",
+			});
+		} else {
+			setStep((prevStep) => prevStep + 1);
+		}
+	};
+	const validateStepTwo = () => {
+		if (!service) {
+			toast({
+				variant: "destructive",
+				description: "Please select a service",
+			});
+		} else {
+			setStep((prevStep) => prevStep + 1);
+		}
+	};
+	const validateStepThree = () => {
+		if (!vehicleType || !date || !time) {
+			toast({
+				variant: "destructive",
+				description: "Please select a vehicle type, date and time",
+			});
+		} else if (
+			moment(time, "hh:mm:ss A").isBefore(
+				moment("9:00:00 AM", "hh:mm:ss A")
+			) ||
+			moment(time, "hh:mm:ss A").isAfter(
+				moment("4:00:00 PM", "hh:mm:ss A")
+			)
+		) {
+			toast({
+				variant: "destructive",
+				description:
+					"Please select a time between 9:00:00 AM - 4:00:00 PM",
+			});
+		} else {
+			setStep((prevStep) => prevStep + 1);
+		}
+	};
+
 	return (
 		<>
 			{step !== 5 && (
@@ -111,7 +176,7 @@ export default function BookServiceForm() {
 								</div>
 								<div
 									className={cn(
-										"h-[50px] w-1 md:h-1 md:w-[70px] bg-[#EFF0F6]",
+										"h-[70px] w-1 md:h-1 md:w-[70px] bg-[#EFF0F6]",
 										{
 											"bg-customGreen": [
 												2, 3, 4,
@@ -133,7 +198,7 @@ export default function BookServiceForm() {
 								</div>
 								<div
 									className={cn(
-										"h-[50px] w-1 md:h-1 md:w-[70px] bg-[#EFF0F6]",
+										"h-[70px] w-1 md:h-1 md:w-[70px] bg-[#EFF0F6]",
 										{
 											"bg-customGreen text-white": [
 												3, 4,
@@ -155,7 +220,7 @@ export default function BookServiceForm() {
 								</div>
 								<div
 									className={cn(
-										"h-[50px] w-1 md:h-1 md:w-[70px] bg-[#EFF0F6]",
+										"h-[70px] w-1 md:h-1 md:w-[70px] bg-[#EFF0F6]",
 										{
 											"bg-customGreen": [4].includes(
 												step
@@ -479,6 +544,7 @@ export default function BookServiceForm() {
 												placeholder="Select a time"
 												onChange={onChange}
 												className="h-[40px] cursor-pointer"
+												format="hh:mm:ss A"
 											/>
 										</div>
 									</div>
@@ -487,7 +553,7 @@ export default function BookServiceForm() {
 							{step === 4 && (
 								<div className="md:mt-10">
 									<div className="flex text-center flex-col gap-2 md:gap-3">
-										<div className="flex justify-around">
+										<div className="flex justify-around h-10">
 											<Image
 												src={Success}
 												alt="success-icon"
@@ -508,6 +574,30 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
+												<h2 className="text-sm md:text-lg font-bold">
+													Lastname -{" "}
+												</h2>
+												<p className="text-customGreen text-sm md:text-lg">
+													{bookingInfo.lastName}
+												</p>
+											</div>
+											<div className="flex flex-col gap-1">
+												<h2 className="text-sm md:text-lg font-bold">
+													Email -{" "}
+												</h2>
+												<p className="text-customGreen text-sm md:text-lg">
+													{bookingInfo.email}
+												</p>
+											</div>
+											<div className="flex flex-col gap-1">
+												<h2 className="text-sm md:text-lg font-bold ">
+													Phone number -{" "}
+												</h2>
+												<p className="text-customGreen text-sm md:text-lg">
+													{bookingInfo.phoneNumber}
+												</p>
+											</div>
+											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold ">
 													Service -{" "}
 												</h2>
@@ -515,6 +605,8 @@ export default function BookServiceForm() {
 													{service}
 												</p>
 											</div>
+										</div>
+										<div className="flex flex-col gap-3">
 											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold">
 													Date & time -{" "}
@@ -533,33 +625,6 @@ export default function BookServiceForm() {
 												</p>
 											</div>
 											<div className="flex flex-col gap-1">
-												<Image
-													src={Dollar}
-													alt="dollar"
-												/>
-												<p className="text-customGreen text-sm md:text-lg">
-													USD {amount}
-												</p>
-											</div>
-										</div>
-										<div className="flex flex-col gap-3">
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Lastname -{" "}
-												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
-													{bookingInfo.lastName}
-												</p>
-											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Email -{" "}
-												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
-													{bookingInfo.email}
-												</p>
-											</div>
-											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold">
 													Vehicle type -{" "}
 												</h2>
@@ -570,10 +635,24 @@ export default function BookServiceForm() {
 											<div className="flex flex-col gap-1">
 												<h2 className="text-sm md:text-lg font-bold">
 													Vehicle registration number
-													-{bookingInfo.vehicleRegNo}
+													-
 												</h2>
 												<p className="text-customGreen text-sm md:text-lg">
-													1849294402
+													{bookingInfo.vehicleRegNo}
+												</p>
+											</div>
+											<div className="flex flex-col gap-1">
+												<div className="flex items-center gap-2">
+													<Image
+														src={Dollar}
+														alt="dollar"
+													/>
+													<h2 className="text-sm md:text-lg font-bold">
+														Price
+													</h2>
+												</div>
+												<p className="text-customGreen text-sm md:text-lg">
+													USD {amount}
 												</p>
 											</div>
 										</div>
@@ -581,7 +660,7 @@ export default function BookServiceForm() {
 									<div className="flex justify-center mt-4">
 										<Button
 											btnContent="Proceed to pay"
-											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] px-12"
+											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer py-3 px-10 md:px-12"
 											btnType="button"
 											handleSubmit={() => {
 												handleSubmit();
@@ -608,9 +687,13 @@ export default function BookServiceForm() {
 									btnContent="Next step"
 									btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
 									btnType="button"
-									handleSubmit={() =>
-										setStep((prevStep) => prevStep + 1)
-									}
+									handleSubmit={() => {
+										if (step === 2) {
+											return validateStepTwo();
+										} else {
+											return validateStepThree();
+										}
+									}}
 								/>
 							</div>
 						)}
@@ -620,9 +703,7 @@ export default function BookServiceForm() {
 									btnContent="Next Step"
 									btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mr-3"
 									btnType="button"
-									handleSubmit={() =>
-										setStep((prevStep) => prevStep + 1)
-									}
+									handleSubmit={() => validateStepOne()}
 								/>
 							</div>
 						)}
@@ -647,6 +728,9 @@ export default function BookServiceForm() {
 						<Image src={Payment} alt="payment-pic" />
 					</div>
 					<div className="w-full md:w-1/2 px-10 py-10 mt-5">
+						<div className="flex justify-around mb-5">
+							<h1 className="font-bold">Proceed to checkout</h1>
+						</div>
 						<Elements
 							stripe={stripePromise}
 							options={{

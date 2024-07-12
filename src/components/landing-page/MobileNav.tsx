@@ -1,13 +1,19 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+	Sheet,
+	SheetContent,
+	SheetTrigger,
+	SheetClose,
+} from "@/components/ui/sheet";
 import { FacebookIcon, InstagramIcon, MobileMenu } from "@/assets/icons";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Button from "./Button";
 
 export default function MobileNav() {
 	const pathName = usePathname();
+	const router = useRouter();
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -20,60 +26,61 @@ export default function MobileNav() {
 					<div className="flex flex-col gap-6">
 						<div className="flex flex-col gap-4">
 							<Link
-								href="/"
+								href="/#home"
 								className={`font-medium hover:text-lightGreen ${
-									pathName === "/"
+									pathName === "/#home"
 										? "text-customGreen"
 										: "text-customBlack"
 								}`}
 							>
-								Home
+								<SheetClose>Home</SheetClose>
 							</Link>
 							<Link
-								href="/services"
+								href="/#services"
 								className={`font-medium hover:text-lightGreen ${
-									pathName === "/services"
+									pathName === "/#services"
 										? "text-customGreen"
 										: "text-customBlack"
 								}`}
 							>
-								Our Services
+								<SheetClose>Our Services</SheetClose>
 							</Link>
 							<Link
-								href="/testimonials"
+								href="/#testimonials"
 								className={`font-medium hover:text-lightGreen ${
-									pathName === "/testimonials"
+									pathName === "/#testimonials"
 										? "text-customGreen"
 										: "text-customBlack"
 								}`}
 							>
-								Testimonials
+								<SheetClose>Testimonials</SheetClose>
 							</Link>
 							<Link
-								href="/about"
+								href="/#about"
 								className={`font-medium hover:text-lightGreen ${
-									pathName === "/about"
+									pathName === "/#about"
 										? "text-customGreen"
 										: "text-customBlack"
 								}`}
 							>
-								About us
+								<SheetClose>About us</SheetClose>
 							</Link>
 							<Link
-								href="/contact"
+								href="/#contact"
 								className={`font-medium hover:text-lightGreen ${
-									pathName === "/contact"
+									pathName === "/#contact"
 										? "text-customGreen"
 										: "text-customBlack"
 								}`}
 							>
-								Get in touch
+								<SheetClose>Get in touch</SheetClose>
 							</Link>
 						</div>
 						<Button
 							btnType="button"
 							btnStyles="bg-customGreen w-[150px] hover:bg-lightGreen py-2 rounded-3xl text-white cursor-pointer"
 							btnContent="Book service"
+							handleSubmit={() => router.push("/book-service")}
 						/>
 					</div>
 					<div className="mt-5">
@@ -83,7 +90,7 @@ export default function MobileNav() {
 								<Image src={FacebookIcon} alt="facebook" />
 							</Link>
 							<Link href="/">
-								<Image src={InstagramIcon} alt="facebook" />
+								<Image src={InstagramIcon} alt="instagram" />
 							</Link>
 						</div>
 					</div>
