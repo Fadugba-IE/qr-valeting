@@ -80,21 +80,20 @@ export default function BookServiceForm() {
 
 	const amount = selectPrice(service);
 
-	const bookingData = {
-		firstName: bookingInfo.firstName,
-		lastName: bookingInfo.lastName,
-		email: bookingInfo.email,
-		phoneNumber: bookingInfo.phoneNumber,
-		amount: amount,
-		additionalInfo: bookingInfo.description,
-		vehicleRegistrationNumber: bookingInfo.vehicleRegNo,
-		serviceType: service,
-		carType: vehicleType,
-		date: formattedDate,
-		time: formattedTime,
-	};
-
 	const handleSubmit = () => {
+		const bookingData = {
+			firstName: bookingInfo.firstName,
+			lastName: bookingInfo.lastName,
+			email: bookingInfo.email,
+			phoneNumber: bookingInfo.phoneNumber,
+			amount: amount,
+			additionalInfo: bookingInfo.description,
+			vehicleRegistrationNumber: bookingInfo.vehicleRegNo,
+			serviceType: service,
+			carType: vehicleType,
+			date: formattedDate,
+			time: formattedTime,
+		};
 		localStorage.setItem("bookingInfo", JSON.stringify(bookingData));
 	};
 
