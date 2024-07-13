@@ -8,7 +8,11 @@ import {
 import { convertToSubcurrency } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
-const CheckoutPage = ({ amount }: { amount: number | null }) => {
+type CheckoutPageProps = {
+	amount: number | null;
+};
+
+const CheckoutPage = ({ amount }: CheckoutPageProps) => {
 	const stripe = useStripe();
 	const elements = useElements();
 	const [errorMessage, setErrorMessage] = useState<string>();
@@ -48,6 +52,7 @@ const CheckoutPage = ({ amount }: { amount: number | null }) => {
 			clientSecret,
 			confirmParams: {
 				return_url: `https://vale-valeting.vercel.app/payment-success?amount=${amount}`,
+				// return_url: `http://localhost:3000/payment-success?amount=${amount}`,
 			},
 		});
 

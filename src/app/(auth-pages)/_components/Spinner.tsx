@@ -1,4 +1,9 @@
-export default function Spinner() {
+type SpinnerProps = {
+	width?: string;
+	height?: string;
+};
+
+export default function Spinner({ width, height }: SpinnerProps) {
 	return (
 		<div className="grid h-auto w-auto place-items-center overflow-x-hidden rounded-3xl lg:overflow-visible">
 			<svg
