@@ -11,13 +11,14 @@ export default function PaymentSuccess() {
 	// const { toast } = useToast();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const bookingInfo = localStorage.getItem("bookingInfo");
-	console.log(bookingInfo);
-	if (!bookingInfo) {
-		return;
-	}
-	const bookingData = JSON.parse(bookingInfo);
-	console.log(bookingData);
+	const [bookingData, setBookingData] = useState<BookingInfo | null>(null);
+
+	useEffect(() => {
+		const bookingInfo = localStorage.getItem("bookingInfo");
+		if (bookingInfo) {
+			setBookingData(JSON.parse(bookingInfo));
+		}
+	}, []);
 
 	const generateQRCode = async (data: BookingInfo) => {
 		setIsLoading(true);
@@ -46,15 +47,17 @@ export default function PaymentSuccess() {
 	};
 
 	useEffect(() => {
-		generateQRCode(bookingData);
-	}, []);
+		if (bookingData) {
+			generateQRCode(bookingData);
+		}
+	}, [bookingData]);
 
 	return (
 		<main className="min-h-screen w-full">
 			<Header />
 			<div className="w-full h-auto flex flex-row md:flex-row pt-[90px]">
 				<div className="hidden md:flex w-1/2">
-					<Image src={Payment} alt="payment-pic" />
+					<Image src={Payment} alt="payment-pic" priority />
 				</div>
 				<div className="w-full md:w-1/2 px-10 md:px-20 py-10 mt-5">
 					<div className="">
