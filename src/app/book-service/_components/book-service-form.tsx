@@ -384,44 +384,44 @@ export default function BookServiceForm() {
 										<button
 											className={cn(
 												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "Handwash" &&
+												service === "HandWash" &&
 													"border-2 border-customGreen"
 											)}
 											value={service}
 											onClick={() =>
-												setService("Handwash")
+												setService("HandWash")
 											}
 											type="button"
 										>
-											Handwash
+											HandWash
 										</button>
 										<button
 											className={cn(
 												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "Mini valet" &&
+												service === "MiniValet" &&
 													"border-2 border-customGreen"
 											)}
 											value={service}
 											onClick={() =>
-												setService("Mini valet")
+												setService("MiniValet")
 											}
 											type="button"
 										>
-											Mini valet
+											Mini Valet
 										</button>
 										<button
 											className={cn(
 												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "Full valet" &&
+												service === "FullValet" &&
 													"border-2 border-customGreen"
 											)}
 											value={service}
 											onClick={() =>
-												setService("Full valet")
+												setService("FullValet")
 											}
 											type="button"
 										>
-											Full valet
+											Full Valet
 										</button>
 										<button
 											className={cn(

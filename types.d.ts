@@ -7,7 +7,7 @@ type ServiceCard = {
 };
 
 type SuccessPaymentType = {
-	status: "SUCCESS" | "FAILURE";
+	status: string;
 	data: {
 		email: string;
 		reference: string;
