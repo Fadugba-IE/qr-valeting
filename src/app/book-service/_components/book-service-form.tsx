@@ -553,7 +553,7 @@ export default function BookServiceForm() {
 							{step === 4 && (
 								<div className="md:mt-10">
 									<div className="flex text-center flex-col gap-2 md:gap-3">
-										<div className="flex justify-around h-10">
+										<div className="flex justify-around h-12 md:h-36">
 											<Image
 												src={Success}
 												alt="success-icon"
