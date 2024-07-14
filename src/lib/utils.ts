@@ -8,9 +8,9 @@ export function cn(...inputs: ClassValue[]) {
 export function selectPrice(serviceType: string) {
 	if (serviceType?.toLowerCase() === "handwash") {
 		return 100;
-	} else if (serviceType?.toLowerCase() === "mini valet") {
+	} else if (serviceType?.toLowerCase() === "minivalet") {
 		return 200;
-	} else if (serviceType?.toLowerCase() === "full valet") {
+	} else if (serviceType?.toLowerCase() === "fullvalet") {
 		return 200;
 	} else if (serviceType?.toLowerCase() === "other") {
 		return 200;
