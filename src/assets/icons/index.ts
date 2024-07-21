@@ -18,6 +18,13 @@ import TickOn from "./tick-on.svg";
 import TickOff from "./tick-off.svg";
 import Success from "./success.svg";
 import Dollar from "./dollar.svg";
+import Time from "./time.svg";
+import TimeWhite from "./timeWhite.svg";
+import Booking from "./booking.svg";
+import BookingWhite from "./bookingWhite.svg";
+import Camera from "./camera.svg";
+import Dropdown from "./dropdown.svg";
+import Power from "./power.svg";
 
 export {
 	NavLogo,
@@ -40,4 +47,11 @@ export {
 	TickOff,
 	Success,
 	Dollar,
+	Time,
+	TimeWhite,
+	Booking,
+	BookingWhite,
+	Camera,
+	Dropdown,
+	Power,
 };

@@ -24,13 +24,13 @@ export default function HeroSection() {
 				<div className="flex items-center gap-5 mt-10">
 					<Button
 						btnContent="Book service"
-						btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
+						btnStyles="bg-customOrange hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px]"
 						btnType="button"
 						handleSubmit={() => router.push("/book-service")}
 					/>
 					<Button
 						btnContent="Login"
-						btnStyles="border border-customGreen hover:bg-gray-300 text-customGreen rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
+						btnStyles="border border-customOrange hover:bg-gray-300 text-customOrange rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
 						btnType="button"
 						handleSubmit={() => router.push("/login")}
 					/>

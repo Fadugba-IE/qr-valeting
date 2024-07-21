@@ -37,6 +37,7 @@ const config = {
 				},
 				customBlack: "#343434",
 				customGreen: "#007148",
+				customOrange: "#FF8000",
 				lightGreen: "#009162",
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",

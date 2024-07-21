@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, roles } from "@/lib/utils";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -10,10 +10,15 @@ import Button from "@/components/landing-page/Button";
 import Spinner from "../_components/Spinner";
 import Image from "next/image";
 import { NavLogo } from "@/assets/icons";
+import { TailSpin } from "react-loader-spinner";
+import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
 	const { toast } = useToast();
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const { user, isLoading, setIsLoading } = useContext(AuthContext);
+
+	const router = useRouter();
 
 	const schema = z.object({
 		emailAddress: z
@@ -50,17 +55,47 @@ export default function Login() {
 		!watchAllFields.password ||
 		Object.keys(errors).length > 0;
 
-	const onSubmit = (data: any) => {
+	const onSubmit = async (data: any) => {
 		setIsLoading(true);
 		console.log(data);
-		setTimeout(() => {
-			setIsLoading(false);
-			toast({
-				description: "Login successful",
-			});
-			reset();
-		}, 5000);
+		try {
+			const response = await fetch(
+				"https://valevaleting-32358f4be8bc.herokuapp.com/api/v1/auth/authenticate",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(data),
+				}
+			);
+
+			if (!response.ok) {
+				throw new Error("Failed to login");
+			}
+
+			const responseData = await response.json();
+			console.log(responseData);
+			// setTimeout(() => {
+			// 	setIsLoading(false);
+			// 	toast({
+			// 		variant: "success",
+			// 		description: "Login successful",
+			// 	});
+			// 	if (user.role === roles.admin) {
+			// 		router.push("/admin/dashboard");
+			// 	} else {
+			// 		router.push("/book-service");
+			// 	}
+			// }, 4000);
+		} catch (error: any) {
+			console.log(error);
+			console.error("Error:", error);
+		}
+		setIsLoading(false);
 	};
+
+	console.log(user);
 
 	return (
 		<div className="h-screen w-full bg-customGreen flex justify-around items-center px-2">
@@ -86,7 +121,7 @@ export default function Login() {
 						name="emailAddress"
 						type="email"
 						placeholder="Enter a valid email"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
+						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -106,7 +141,7 @@ export default function Login() {
 						name="password"
 						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
+						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">
@@ -135,9 +170,19 @@ export default function Login() {
 				</div>
 
 				<Button
-					btnContent={isLoading ? <Spinner /> : "Login"}
+					btnContent={
+						isLoading ? (
+							<TailSpin
+								color="lightGreen"
+								height="35px"
+								width="50px"
+							/>
+						) : (
+							"Login"
+						)
+					}
 					btnStyles={cn(
-						"bg-customGreen hover:bg-lightGreen text-sm md:text-lg text-white rounded-3xl cursor-pointer h-[40px] w-full mt-5",
+						"bg-customGreen hover:bg-lightGreen flex items-center justify-around text-sm md:text-lg text-white rounded-xl cursor-pointer h-[40px] w-full mt-5",
 						isButtonDisabled && "opacity-25"
 					)}
 					btnType="submit"

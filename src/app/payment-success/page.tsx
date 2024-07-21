@@ -5,10 +5,11 @@ import Footer from "@/components/landing-page/Footer";
 import Header from "@/components/landing-page/Header";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Spinner from "../(auth-pages)/_components/Spinner";
+import { useToast } from "@/components/ui/use-toast";
+import { TailSpin } from "react-loader-spinner";
 
 export default function PaymentSuccess() {
-	// const { toast } = useToast();
+	const { toast } = useToast();
 	const [isLoading, setIsLoading] = useState(true);
 
 	const [bookingData, setBookingData] = useState<BookingInfo | null>(null);
@@ -71,6 +72,7 @@ export default function PaymentSuccess() {
 		const link = document.createElement("a");
 		link.href = qrCode.data.qrCodeUrl;
 		link.download = "qr-code.png";
+		link.target = "_blank";
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
@@ -80,6 +82,13 @@ export default function PaymentSuccess() {
 		if (bookingData) {
 			generateQRCode(bookingData);
 		}
+		setTimeout(() => {
+			toast({
+				variant: "success",
+				description:
+					"An email has been sent to you to confirm your booking was successful, show the QR code to the officer at the counter.",
+			});
+		}, 5000);
 	}, [bookingData]);
 
 	return (
@@ -95,8 +104,15 @@ export default function PaymentSuccess() {
 							PAYMENT SUCCESSFUL
 						</h1>
 						{isLoading ? (
-							<div className="flex items-center gap-3 mt-5">
-								<h1>Generating QR Code</h1> <Spinner />
+							<div className="flex items-center gap-3 mt-5 ml-[30px]">
+								<h1 className="font-semibold text-lg">
+									Generating QR Code
+								</h1>{" "}
+								<TailSpin
+									color="lightGreen"
+									height="35px"
+									width="50px"
+								/>
 							</div>
 						) : (
 							<div className="">

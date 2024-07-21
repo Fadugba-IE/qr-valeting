@@ -24,3 +24,8 @@ export function convertToSubcurrency(amount: number | null, factor = 100) {
 		return Math.round(amount * factor);
 	}
 }
+
+export const roles = {
+	user: "USER",
+	admin: "ADMIN",
+};
