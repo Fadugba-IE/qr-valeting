@@ -22,13 +22,13 @@ export default function Sidebar() {
 				</div>
 				<div className="flex flex-col gap-2">
 					<Link
-						href="/admin/dashboard"
+						href="/admin"
 						className="bg-white flex gap-4 cursor-pointer"
 					>
 						<div
 							className={cn(
 								"h-[40px] w-1 rounded-r-lg ",
-								pathname === "/admin/dashboard"
+								pathname === "/admin"
 									? "bg-customGreen"
 									: "bg-gray-100 hover:bg-gray-200"
 							)}
@@ -36,17 +36,13 @@ export default function Sidebar() {
 						<div
 							className={cn(
 								"h-[40px] w-[180px] rounded-md py-2 px-4  flex items-center gap-3",
-								pathname === "/admin/dashboard"
+								pathname === "/admin"
 									? "bg-customGreen text-white"
 									: "bg-gray-100 text-black hover:bg-gray-200"
 							)}
 						>
 							<Image
-								src={
-									pathname === "/admin/dashboard"
-										? TimeWhite
-										: Time
-								}
+								src={pathname === "/admin" ? TimeWhite : Time}
 								alt="dashboard-icon"
 							/>
 							<p className="text-sm">Dashboard</p>
