@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "./_components/Sidebar";
 import Header from "./_components/Header";
-
-const inter = Inter({ subsets: ["latin"] });
-const poppins = Poppins({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 export const metadata: Metadata = {
 	title: "Vale Valteing Service",
