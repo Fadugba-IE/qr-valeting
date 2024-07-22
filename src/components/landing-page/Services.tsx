@@ -112,7 +112,7 @@ export default function Services() {
 			<div className="text-center">
 				<Button
 					btnContent="Book Service"
-					btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mt-8"
+					btnStyles="bg-customOrange hover:bg-lightGreen text-white rounded-3xl cursor-pointer h-[50px] w-[150px] mt-8"
 					btnType="button"
 					handleSubmit={() => router.push("/book-service")}
 				/>

@@ -49,7 +49,7 @@ export default function Header() {
 					</Link>
 				</div>
 				<Button
-					btnStyles="bg-customGreen hover:bg-lightGreen px-4 py-2 rounded-3xl text-white cursor-pointer"
+					btnStyles="bg-customOrange hover:bg-lightGreen px-4 py-2 rounded-3xl text-white cursor-pointer"
 					btnType="button"
 					btnContent="Book service"
 					handleSubmit={() => router.push("/book-service")}

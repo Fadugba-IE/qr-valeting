@@ -4,19 +4,27 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import Button from "@/components/landing-page/Button";
-import Spinner from "../_components/Spinner";
+import { TailSpin } from "react-loader-spinner";
 import Image from "next/image";
 import { NavLogo } from "@/assets/icons";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 
 export default function SignUp() {
 	const { toast } = useToast();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const schema = z.object({
-		fullName: z.string().min(1, { message: "Full name is required" }),
+		firstname: z.string().min(1, { message: "Firstname is required" }),
+		lastname: z.string().min(1, { message: "Lastname is required" }),
 		emailAddress: z
 			.string()
 			.min(1, { message: "Email is required" })
@@ -32,12 +40,16 @@ export default function SignUp() {
 				message: "Password must contain a special character",
 			})
 			.regex(/\d/, { message: "Password must contain a number" }),
+		role: z.enum(["ADMIN", "USER"], {
+			message: "Role must be either ADMIN or USER",
+		}),
 	});
 
 	const {
 		register,
 		handleSubmit,
 		watch,
+		control,
 		formState: { errors },
 		reset,
 	} = useForm({
@@ -47,9 +59,11 @@ export default function SignUp() {
 	const watchAllFields = watch();
 
 	const isButtonDisabled =
-		!watchAllFields.fullName ||
+		!watchAllFields.firstname ||
+		!watchAllFields.lastname ||
 		!watchAllFields.emailAddress ||
 		!watchAllFields.password ||
+		!watchAllFields.role ||
 		Object.keys(errors).length > 0;
 
 	const onSubmit = (data: any) => {
@@ -58,14 +72,14 @@ export default function SignUp() {
 		setTimeout(() => {
 			setIsLoading(false);
 			toast({
-				description: "Account created successfully✅",
+				description: "Account created successfully",
 			});
 			reset();
 		}, 5000);
 	};
 
 	return (
-		<div className="h-[100vh] md:h-[130vh] w-full bg-customGreen flex justify-around items-center px-2">
+		<div className="h-[100vh] md:h-auto w-full py-20 bg-customGreen flex justify-around items-center px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="h-auto w-[300px] md:w-[450px] bg-white rounded-3xl md:rounded-xl px-8 md:px-14 py-8 md:py-14"
@@ -78,25 +92,45 @@ export default function SignUp() {
 				</h2>
 				<div className="mt-5 flex flex-col gap-2">
 					<label
-						htmlFor="fullName"
+						htmlFor="firstname"
 						className="text-customGreen font-medium text-sm md:text-lg"
 					>
-						Full name
+						Firstname
 					</label>
 					<input
-						{...register("fullName")}
-						name="fullName"
+						{...register("firstname")}
+						name="firstname"
 						type="text"
-						placeholder="Enter your full name"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
+						placeholder="Enter your firstname"
+						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
-					{errors.fullName && (
+					{errors.firstname && (
 						<p className="text-sm text-red-500">
-							{errors.fullName.message as string}
+							{errors.firstname.message as string}
 						</p>
 					)}
 				</div>
-				<div className="mt-5 flex flex-col gap-2">
+				<div className="mt-4 flex flex-col gap-2">
+					<label
+						htmlFor="lastname"
+						className="text-customGreen font-medium text-sm md:text-lg"
+					>
+						Lastname
+					</label>
+					<input
+						{...register("lastname")}
+						name="lastname"
+						type="text"
+						placeholder="Enter your lastname"
+						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+					/>
+					{errors.lastname && (
+						<p className="text-sm text-red-500">
+							{errors.lastname.message as string}
+						</p>
+					)}
+				</div>
+				<div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="email"
 						className="text-customGreen font-medium text-sm md:text-lg"
@@ -108,7 +142,7 @@ export default function SignUp() {
 						name="emailAddress"
 						type="email"
 						placeholder="Enter a valid email"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
+						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -116,7 +150,7 @@ export default function SignUp() {
 						</p>
 					)}
 				</div>
-				<div className="mt-5 flex flex-col gap-2">
+				<div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="password"
 						className="text-customGreen font-medium text-sm md:text-lg"
@@ -128,11 +162,43 @@ export default function SignUp() {
 						name="password"
 						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-3xl h-[35px] md:h-[40px] border border-customGreen px-3 md:px-5 placeholder:text-sm"
+						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">
 							{errors.password.message as string}
+						</p>
+					)}
+				</div>
+				<div className="mt-4 flex flex-col gap-2">
+					<label
+						htmlFor="role"
+						className="text-customGreen font-medium text-sm md:text-lg"
+					>
+						Role
+					</label>
+					<Controller
+						name="role"
+						control={control}
+						defaultValue=""
+						render={({ field }) => (
+							<Select
+								value={field.value}
+								onValueChange={(value) => field.onChange(value)}
+							>
+								<SelectTrigger className="w-full">
+									<SelectValue placeholder="Select a role" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="USER">User</SelectItem>
+									<SelectItem value="ADMIN">Admin</SelectItem>
+								</SelectContent>
+							</Select>
+						)}
+					/>
+					{errors.role && (
+						<p className="text-sm text-red-500">
+							{errors.role.message as string}
 						</p>
 					)}
 				</div>
@@ -148,9 +214,19 @@ export default function SignUp() {
 					</div>
 				</div>
 				<Button
-					btnContent={isLoading ? <Spinner /> : "Sign up"}
+					btnContent={
+						isLoading ? (
+							<TailSpin
+								color="lightGreen"
+								height="35px"
+								width="50px"
+							/>
+						) : (
+							"Sign up"
+						)
+					}
 					btnStyles={cn(
-						"bg-customGreen hover:bg-lightGreen text-sm md:text-lg text-white rounded-3xl cursor-pointer h-[40px] w-full mt-5",
+						"bg-customGreen hover:bg-lightGreen flex items-center justify-around text-sm md:text-lg text-white rounded-xl cursor-pointer h-[40px] w-full mt-5",
 						isButtonDisabled && "opacity-25"
 					)}
 					btnType="submit"

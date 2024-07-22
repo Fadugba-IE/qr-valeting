@@ -51,9 +51,8 @@ const CheckoutPage = ({ amount }: CheckoutPageProps) => {
 			elements,
 			clientSecret,
 			confirmParams: {
-				return_url: `https://vale-valeting.vercel.app/payment-success?amount=${amount}`,
-				// return_url: `/payment-success`,
-				// return_url: `http://localhost:4200/payment-success?amount=${amount}`,
+				// return_url: `https://vale-valeting.vercel.app/payment-success?amount=${amount}`,
+				return_url: `http://localhost:4200/payment-success?amount=${amount}`,
 			},
 		});
 
