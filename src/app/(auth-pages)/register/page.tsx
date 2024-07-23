@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { z } from "zod";
@@ -17,11 +17,13 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
 	const { toast } = useToast();
-	const [isLoading, setIsLoading] = useState<boolean>(false);
-
+	const { isLoading, setIsLoading } = useContext(AuthContext);
+	const router = useRouter();
 	const schema = z.object({
 		firstname: z.string().min(1, { message: "Firstname is required" }),
 		lastname: z.string().min(1, { message: "Lastname is required" }),
@@ -66,23 +68,53 @@ export default function SignUp() {
 		!watchAllFields.role ||
 		Object.keys(errors).length > 0;
 
-	const onSubmit = (data: any) => {
+	const onSubmit = async (data: any) => {
 		setIsLoading(true);
-		console.log(data);
-		setTimeout(() => {
-			setIsLoading(false);
-			toast({
-				description: "Account created successfully",
-			});
-			reset();
-		}, 5000);
+		try {
+			const response = await fetch(
+				"https://valevaleting-32358f4be8bc.herokuapp.com/api/v1/auth/register",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						firstname: data.firstname,
+						lastname: data.lastname,
+						email: data.emailAddress,
+						password: data.password,
+						role: data.role,
+					}),
+				}
+			);
+
+			const responseData = await response.json();
+			console.log(responseData);
+
+			if (responseData.status === "SUCCESS") {
+				setIsLoading(false);
+				toast({
+					variant: "success",
+					description: "Account created successfully",
+				});
+				router.push("/login");
+			} else if (responseData.status === 400) {
+				toast({
+					variant: "destructive",
+					description: responseData.message,
+				});
+			}
+		} catch (error) {
+			console.log(error);
+		}
+		setIsLoading(false);
 	};
 
 	return (
-		<div className="h-[100vh] md:h-auto w-full py-20 bg-customGreen flex justify-around items-center px-2">
+		<div className="h-auto w-full md:py-20 md:bg-customGreen md:flex justify-around items-center md:px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="h-auto w-[300px] md:w-[450px] bg-white rounded-3xl md:rounded-xl px-8 md:px-14 py-8 md:py-14"
+				className="h-auto w-full md:w-[450px] bg-white  md:rounded-xl px-8 md:px-14 py-8 md:py-14"
 			>
 				<div className="flex justify-center">
 					<Image src={NavLogo} alt="logo" className="" />

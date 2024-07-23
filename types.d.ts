@@ -41,3 +41,27 @@ type BookingInfo = {
 	date: string;
 	time: string | string[];
 };
+
+type UserRole =
+	| "READ_PRIVILEGE"
+	| "WRITE_PRIVILEGE"
+	| "DELETE_PRIVILEGE"
+	| "UPDATE_PRIVILEGE"
+	| "ROLE_ADMIN";
+
+interface UserInfo {
+	id: string;
+	email: string;
+	roles: UserRole[];
+	first_name: string;
+	role_name: string;
+	access_token: string;
+	refresh_token: string;
+	token_type: string;
+}
+
+interface AuthInfo {
+	status: string | number;
+	data: UserInfo;
+	message: string;
+}

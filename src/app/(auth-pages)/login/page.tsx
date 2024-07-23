@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import Button from "@/components/landing-page/Button";
-import Spinner from "../_components/Spinner";
 import Image from "next/image";
 import { NavLogo } from "@/assets/icons";
 import { TailSpin } from "react-loader-spinner";
@@ -16,7 +15,8 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
 	const { toast } = useToast();
-	const { user, isLoading, setIsLoading } = useContext(AuthContext);
+	const { userData, setUserData, isLoading, setIsLoading } =
+		useContext(AuthContext);
 
 	const router = useRouter();
 
@@ -57,7 +57,6 @@ export default function Login() {
 
 	const onSubmit = async (data: any) => {
 		setIsLoading(true);
-		console.log(data);
 		try {
 			const response = await fetch(
 				"https://valevaleting-32358f4be8bc.herokuapp.com/api/v1/auth/authenticate",
@@ -66,42 +65,45 @@ export default function Login() {
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify(data),
+					body: JSON.stringify({
+						email: data.emailAddress,
+						password: data.password,
+					}),
 				}
 			);
 
-			if (!response.ok) {
-				throw new Error("Failed to login");
-			}
-
-			const responseData = await response.json();
+			const responseData: AuthInfo = await response.json();
 			console.log(responseData);
-			// setTimeout(() => {
-			// 	setIsLoading(false);
-			// 	toast({
-			// 		variant: "success",
-			// 		description: "Login successful",
-			// 	});
-			// 	if (user.role === roles.admin) {
-			// 		router.push("/admin/dashboard");
-			// 	} else {
-			// 		router.push("/book-service");
-			// 	}
-			// }, 4000);
-		} catch (error: any) {
+
+			if (responseData.status === "SUCCESS") {
+				setUserData(responseData.data);
+				setIsLoading(false);
+				toast({
+					variant: "success",
+					description: "Login successful",
+				});
+				if (userData?.role_name === roles.admin) {
+					router.push("/admin");
+				} else {
+					router.push("/book-service");
+				}
+			} else if (responseData.status === 400) {
+				toast({
+					variant: "destructive",
+					description: responseData.message,
+				});
+			}
+		} catch (error) {
 			console.log(error);
-			console.error("Error:", error);
 		}
 		setIsLoading(false);
 	};
 
-	console.log(user);
-
 	return (
-		<div className="h-screen w-full bg-customGreen flex justify-around items-center px-2">
+		<div className="md:h-screen md:w-full md:bg-customGreen md:flex justify-around items-center md:px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="h-auto w-[300px] md:w-[450px] bg-white rounded-3xl md:rounded-xl px-8 md:px-14 py-8 md:py-14"
+				className="h-auto w-full md:w-[450px] bg-white md:rounded-xl px-8 md:px-14 py-8 md:py-14"
 			>
 				<div className="flex justify-center">
 					<Image src={NavLogo} alt="logo" priority />
