@@ -11,24 +11,17 @@ export default function Bookings() {
 	return (
 		<div className="h-[90vh] w-full bg-[#F5F6FA] px-4 md:px-10 pt-5 pb-10 overflow-y-scroll">
 			<div className="flex md:hidden w-full items-center gap-2">
-				<Link
-					href="/admin/dashboard"
-					className="w-1/2 flex cursor-pointer"
-				>
+				<Link href="/admin" className="w-1/2 flex cursor-pointer">
 					<div
 						className={cn(
 							"rounded-md p-2 w-full flex items-center gap-3",
-							pathname === "/admin/dashboard"
+							pathname === "/admin"
 								? "bg-customGreen text-white"
 								: "bg-white text-black hover:bg-gray-200"
 						)}
 					>
 						<Image
-							src={
-								pathname === "/admin/dashboard"
-									? TimeWhite
-									: Time
-							}
+							src={pathname === "/admin" ? TimeWhite : Time}
 							alt="dashboard-icon"
 						/>
 						<p className="text-sm">Dashboard</p>
