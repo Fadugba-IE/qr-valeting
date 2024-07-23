@@ -1,11 +1,11 @@
 "use client";
+import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NavLogo } from "@/assets/icons";
 import { usePathname, useRouter } from "next/navigation";
 import MobileNav from "./MobileNav";
 import Button from "./Button";
-import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
 export default function Header() {
@@ -53,7 +53,7 @@ export default function Header() {
 				</div>
 				{userData ? (
 					<div className="font-medium text-customGreen">
-						{userData.first_name}
+						{userData?.first_name}
 					</div>
 				) : (
 					<Button

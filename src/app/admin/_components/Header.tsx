@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext } from "react";
 import { CircleUserRound, Search } from "lucide-react";
 import Image from "next/image";

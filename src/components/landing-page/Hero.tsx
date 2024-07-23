@@ -1,10 +1,10 @@
 "use client";
+import { useContext } from "react";
 import Image from "next/image";
 import Button from "./Button";
 import { CarOne, CarThree, CarTwo } from "@/assets/images";
 import { useRouter } from "next/navigation";
 import { DotIcon } from "@/assets/icons";
-import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
 export default function HeroSection() {
