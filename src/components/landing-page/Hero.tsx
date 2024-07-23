@@ -1,13 +1,15 @@
 "use client";
+import { useContext } from "react";
 import Image from "next/image";
 import Button from "./Button";
 import { CarOne, CarThree, CarTwo } from "@/assets/images";
 import { useRouter } from "next/navigation";
 import { DotIcon } from "@/assets/icons";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function HeroSection() {
 	const router = useRouter();
-
+	const { userData } = useContext(AuthContext);
 	return (
 		<div
 			id="home"
@@ -28,12 +30,14 @@ export default function HeroSection() {
 						btnType="button"
 						handleSubmit={() => router.push("/book-service")}
 					/>
-					<Button
-						btnContent="Login"
-						btnStyles="border border-customOrange hover:bg-gray-300 text-customOrange rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
-						btnType="button"
-						handleSubmit={() => router.push("/login")}
-					/>
+					{!userData && (
+						<Button
+							btnContent="Login"
+							btnStyles="border border-customOrange hover:bg-gray-300 text-customOrange rounded-3xl cursor-pointer h-[50px] w-[150px] border-2"
+							btnType="button"
+							handleSubmit={() => router.push("/login")}
+						/>
+					)}
 				</div>
 			</div>
 			<div className="w-full md:w-[40%] h-auto flex items-center justify-center gap-5 mb-[50px] md:mb-[20px]">

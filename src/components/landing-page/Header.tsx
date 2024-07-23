@@ -1,14 +1,17 @@
 "use client";
+import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NavLogo } from "@/assets/icons";
 import { usePathname, useRouter } from "next/navigation";
 import MobileNav from "./MobileNav";
 import Button from "./Button";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function Header() {
 	const pathName = usePathname();
 	const router = useRouter();
+	const { userData } = useContext(AuthContext);
 
 	return (
 		<div className="w-full shadow-md px-10 md:px-14 py-2 flex items-center justify-between fixed z-10 bg-white">
@@ -48,12 +51,18 @@ export default function Header() {
 						Services
 					</Link>
 				</div>
-				<Button
-					btnStyles="bg-customOrange hover:bg-lightGreen px-4 py-2 rounded-3xl text-white cursor-pointer"
-					btnType="button"
-					btnContent="Book service"
-					handleSubmit={() => router.push("/book-service")}
-				/>
+				{userData ? (
+					<div className="font-medium text-customGreen">
+						{userData?.first_name}
+					</div>
+				) : (
+					<Button
+						btnStyles="bg-customOrange hover:bg-lightGreen px-4 py-2 rounded-3xl text-white cursor-pointer"
+						btnType="button"
+						btnContent="Book service"
+						handleSubmit={() => router.push("/book-service")}
+					/>
+				)}
 			</div>
 			<MobileNav />
 		</div>
