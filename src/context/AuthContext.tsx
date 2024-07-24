@@ -1,14 +1,22 @@
 "use client";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+	createContext,
+	Dispatch,
+	SetStateAction,
+	useState,
+	useEffect,
+} from "react";
 
-type AuthContext = {
+type AuthContextType = {
 	isLoading: boolean;
-	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsLoading: Dispatch<SetStateAction<boolean>>;
 	userData: UserInfo | null;
 	setUserData: Dispatch<SetStateAction<UserInfo | null>>;
 };
 
-export const AuthContext = createContext({} as AuthContext);
+export const AuthContext = createContext<AuthContextType>(
+	{} as AuthContextType
+);
 
 export default function AuthContextProvider({
 	children,
@@ -16,9 +24,14 @@ export default function AuthContextProvider({
 	children: React.ReactNode;
 }) {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [userData, setUserData] = useState<UserInfo | null>(
-		JSON.parse(localStorage.getItem("user") ?? "null")
-	);
+	const [userData, setUserData] = useState<UserInfo | null>(null);
+
+	useEffect(() => {
+		const data = localStorage.getItem("user");
+		if (data) {
+			setUserData(JSON.parse(data));
+		}
+	}, []);
 
 	const authContextValue = {
 		isLoading,
