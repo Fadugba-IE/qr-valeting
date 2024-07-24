@@ -16,7 +16,9 @@ export default function AuthContextProvider({
 	children: React.ReactNode;
 }) {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [userData, setUserData] = useState<UserInfo | null>(null);
+	const [userData, setUserData] = useState<UserInfo | null>(
+		JSON.parse(localStorage.getItem("user") ?? "null")
+	);
 
 	const authContextValue = {
 		isLoading,

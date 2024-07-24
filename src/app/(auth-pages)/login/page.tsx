@@ -15,8 +15,7 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
 	const { toast } = useToast();
-	const { userData, setUserData, isLoading, setIsLoading } =
-		useContext(AuthContext);
+	const { isLoading, setIsLoading } = useContext(AuthContext);
 
 	const router = useRouter();
 
@@ -76,17 +75,19 @@ export default function Login() {
 			console.log(responseData);
 
 			if (responseData.status === "SUCCESS") {
-				setUserData(responseData.data);
+				localStorage.setItem("user", JSON.stringify(responseData.data));
 				setIsLoading(false);
 				toast({
 					variant: "success",
 					description: "Login successful",
 				});
-				if (userData?.role_name === roles.admin) {
-					router.push("/admin");
-				} else {
-					router.push("/book-service");
-				}
+				setTimeout(() => {
+					if (responseData.data.role_name === roles.admin) {
+						router.push("/admin");
+					} else {
+						router.push("/book-service");
+					}
+				}, 1000);
 			} else if (responseData.status === 400) {
 				toast({
 					variant: "destructive",
@@ -100,7 +101,7 @@ export default function Login() {
 	};
 
 	return (
-		<div className="md:h-screen md:w-full md:bg-customGreen md:flex justify-around items-center md:px-2">
+		<div className="md:h-[120vh] md:w-full md:bg-customGreen md:flex justify-around items-center md:px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="h-auto w-full md:w-[450px] bg-white md:rounded-xl px-8 md:px-14 py-8 md:py-14"
@@ -114,7 +115,7 @@ export default function Login() {
 				<div className="mt-5 flex flex-col gap-2">
 					<label
 						htmlFor="email"
-						className="text-customGreen font-medium text-sm md:text-lg"
+						className="text-customGreen font-medium"
 					>
 						Email
 					</label>
@@ -123,7 +124,7 @@ export default function Login() {
 						name="emailAddress"
 						type="email"
 						placeholder="Enter a valid email"
-						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+						className="text-sm rounded-xl h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -143,7 +144,7 @@ export default function Login() {
 						name="password"
 						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+						className="text-sm rounded-xl h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">
