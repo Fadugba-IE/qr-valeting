@@ -12,6 +12,8 @@ type AuthContextType = {
 	setIsLoading: Dispatch<SetStateAction<boolean>>;
 	userData: UserInfo | null;
 	setUserData: Dispatch<SetStateAction<UserInfo | null>>;
+	searchBookingsText: string;
+	setSearchBookingsText: Dispatch<SetStateAction<string>>;
 };
 
 export const AuthContext = createContext<AuthContextType>(
@@ -25,6 +27,7 @@ export default function AuthContextProvider({
 }) {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [userData, setUserData] = useState<UserInfo | null>(null);
+	const [searchBookingsText, setSearchBookingsText] = useState("");
 
 	useEffect(() => {
 		const data = localStorage.getItem("user");
@@ -38,9 +41,9 @@ export default function AuthContextProvider({
 		setIsLoading,
 		userData,
 		setUserData,
+		searchBookingsText,
+		setSearchBookingsText,
 	};
-
-	console.log(userData);
 
 	return (
 		<AuthContext.Provider value={authContextValue}>

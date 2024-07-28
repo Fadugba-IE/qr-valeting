@@ -17,15 +17,24 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { Dispatch, SetStateAction } from "react";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
+	pageNo: number;
+	pageSize: number;
+	totalBookings: number;
+	setPageNo: Dispatch<SetStateAction<number>>;
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
+	pageNo,
+	pageSize,
+	totalBookings,
+	setPageNo,
 }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
@@ -33,6 +42,8 @@ export function DataTable<TData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 	});
+
+	const totalPages = Math.floor(totalBookings / pageSize);
 
 	return (
 		<div className="rounded-md border">
@@ -89,16 +100,16 @@ export function DataTable<TData, TValue>({
 				<Button
 					variant="outline"
 					size="sm"
-					onClick={() => table.previousPage()}
-					disabled={!table.getCanPreviousPage()}
+					onClick={() => setPageNo((prev) => prev - 1)}
+					disabled={pageNo === 1}
 				>
 					Previous
 				</Button>
 				<Button
 					variant="outline"
 					size="sm"
-					onClick={() => table.nextPage()}
-					disabled={!table.getCanNextPage()}
+					onClick={() => setPageNo((prev) => prev + 1)}
+					disabled={pageNo >= totalPages}
 				>
 					Next
 				</Button>

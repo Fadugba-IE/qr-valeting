@@ -17,9 +17,9 @@ export default function Sidebar() {
 	return (
 		<div className="hidden md:flex h-screen w-[20%] bg-white flex-col justify-between pb-20">
 			<div className="">
-				<div className="flex justify-center h-[65px]">
+				<Link href="/" className="flex justify-center h-[65px]">
 					<Image src={NavLogo} alt="logo" priority />
-				</div>
+				</Link>
 				<div className="flex flex-col gap-2">
 					<Link
 						href="/admin"

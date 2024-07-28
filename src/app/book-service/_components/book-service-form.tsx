@@ -68,6 +68,7 @@ export default function BookServiceForm() {
 	const [service, setService] = useState("");
 	const [vehicleType, setVehicleType] = useState("");
 
+	const todaysDate = new Date();
 	const formattedDate = date
 		? date.toLocaleDateString()
 		: "No date available";
@@ -145,6 +146,17 @@ export default function BookServiceForm() {
 			});
 		} else {
 			setStep((prevStep) => prevStep + 1);
+		}
+	};
+
+	const handleDateSelect = (selectedDate: any) => {
+		if (selectedDate >= todaysDate) {
+			setDate(selectedDate);
+		} else {
+			toast({
+				variant: "destructive",
+				description: "Please select a date that is today or later.",
+			});
 		}
 	};
 
@@ -533,7 +545,7 @@ export default function BookServiceForm() {
 												<Calendar
 													mode="single"
 													selected={date}
-													onSelect={setDate}
+													onSelect={handleDateSelect}
 													initialFocus
 												/>
 											</PopoverContent>
