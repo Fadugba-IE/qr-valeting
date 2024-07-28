@@ -97,7 +97,9 @@ export default function SignUp() {
 					variant: "success",
 					description: "Account created successfully",
 				});
-				router.push("/login");
+				setTimeout(() => {
+					router.push("/login");
+				}, 2000);
 			} else if (responseData.status === 400) {
 				toast({
 					variant: "destructive",
@@ -125,7 +127,7 @@ export default function SignUp() {
 				<div className="mt-5 flex flex-col gap-2">
 					<label
 						htmlFor="firstname"
-						className="text-customGreen font-medium text-sm md:text-lg"
+						className="text-customGreen font-medium"
 					>
 						Firstname
 					</label>
@@ -134,7 +136,7 @@ export default function SignUp() {
 						name="firstname"
 						type="text"
 						placeholder="Enter your firstname"
-						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+						className="text-sm rounded-xl h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.firstname && (
 						<p className="text-sm text-red-500">
@@ -145,7 +147,7 @@ export default function SignUp() {
 				<div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="lastname"
-						className="text-customGreen font-medium text-sm md:text-lg"
+						className="text-customGreen font-medium"
 					>
 						Lastname
 					</label>
@@ -154,7 +156,7 @@ export default function SignUp() {
 						name="lastname"
 						type="text"
 						placeholder="Enter your lastname"
-						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+						className="text-sm rounded-xl h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.lastname && (
 						<p className="text-sm text-red-500">
@@ -165,7 +167,7 @@ export default function SignUp() {
 				<div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="email"
-						className="text-customGreen font-medium text-sm md:text-lg"
+						className="text-customGreen font-medium"
 					>
 						Email
 					</label>
@@ -174,7 +176,7 @@ export default function SignUp() {
 						name="emailAddress"
 						type="email"
 						placeholder="Enter a valid email"
-						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+						className="text-sm rounded-xl h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.emailAddress && (
 						<p className="text-sm text-red-500">
@@ -185,7 +187,7 @@ export default function SignUp() {
 				<div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="password"
-						className="text-customGreen font-medium text-sm md:text-lg"
+						className="text-customGreen font-medium"
 					>
 						Password
 					</label>
@@ -194,7 +196,7 @@ export default function SignUp() {
 						name="password"
 						type="password"
 						placeholder="Enter your password"
-						className="text-sm rounded-xl h-[35px] md:h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
+						className="text-sm rounded-xl h-[40px] border-2 border-customGreen px-3 md:px-5 placeholder:text-sm focus:outline-none focus:ring-1 focus:ring-customGreen"
 					/>
 					{errors.password && (
 						<p className="text-sm text-red-500">
@@ -205,7 +207,7 @@ export default function SignUp() {
 				<div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="role"
-						className="text-customGreen font-medium text-sm md:text-lg"
+						className="text-customGreen font-medium"
 					>
 						Role
 					</label>

@@ -6,7 +6,8 @@ import { Camera, Dropdown } from "@/assets/icons";
 import { AuthContext } from "@/context/AuthContext";
 
 export default function Header() {
-	const { userData } = useContext(AuthContext);
+	const { userData, searchBookingsText, setSearchBookingsText } =
+		useContext(AuthContext);
 	return (
 		<div className="w-full h-[12%] bg-white border py-2 px-6 flex flex-col-reverse gap-2 md:gap-0 md:flex-row items-center justify-between">
 			<div className="bg-[#F5F6FA] px-4 py-2 flex items-center gap-3 rounded-[30px] cursor-pointer">
@@ -15,6 +16,8 @@ export default function Header() {
 					type="text"
 					placeholder="Search..."
 					className="w-[200px] md:w-[300px] text-sm bg-[#F5F6FA] outline-none placeholder:text-[#202224]"
+					value={searchBookingsText}
+					onChange={(e) => setSearchBookingsText(e.target.value)}
 				/>
 			</div>
 			<div className="flex items-center gap-4">
