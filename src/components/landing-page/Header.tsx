@@ -2,11 +2,12 @@
 import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { NavLogo } from "@/assets/icons";
+import { Camera, NavLogo } from "@/assets/icons";
 import { usePathname, useRouter } from "next/navigation";
 import MobileNav from "./MobileNav";
 import Button from "./Button";
 import { AuthContext } from "@/context/AuthContext";
+import { CircleUserRound } from "lucide-react";
 
 export default function Header() {
 	const pathName = usePathname();
@@ -52,8 +53,14 @@ export default function Header() {
 					</Link>
 				</div>
 				{userData ? (
-					<div className="font-medium text-customGreen">
-						{userData?.first_name}
+					<div className="flex items-center gap-2">
+						<CircleUserRound className="text-customGreen h-8 w-8" />
+						<div className="flex flex-col cursor-pointer">
+							<h1 className="text-[12px] font-semibold">
+								{userData?.first_name}
+							</h1>
+							<p className="text-[10px]">{userData?.role_name}</p>
+						</div>
 					</div>
 				) : (
 					<Button

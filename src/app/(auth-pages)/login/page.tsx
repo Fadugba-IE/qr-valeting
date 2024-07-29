@@ -81,13 +81,11 @@ export default function Login() {
 					variant: "success",
 					description: "Login successful",
 				});
-				setTimeout(() => {
-					if (responseData.data.role_name === roles.admin) {
-						router.push("/admin");
-					} else {
-						router.push("/book-service");
-					}
-				}, 1000);
+				if (responseData.data.role_name === roles.admin) {
+					router.push("/admin");
+				} else {
+					router.push("/book-service");
+				}
 			} else if (responseData.status === 400) {
 				toast({
 					variant: "destructive",
