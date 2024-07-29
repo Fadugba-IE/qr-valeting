@@ -1,9 +1,15 @@
 "use client";
-
 import { ColumnDef } from "@tanstack/react-table";
+import {
+	Dialog,
+	DialogContent,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+	DialogClose,
+} from "@/components/ui/dialog";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Booking = {
 	id: string;
 	name: string;
@@ -11,6 +17,10 @@ export type Booking = {
 	date: string;
 	time: string;
 	amount: string;
+	email?: string;
+	carType?: string;
+	serviceType?: string;
+	description?: string;
 };
 
 export const columns: ColumnDef<Booking>[] = [
@@ -37,5 +47,110 @@ export const columns: ColumnDef<Booking>[] = [
 	{
 		accessorKey: "amount",
 		header: "Amount",
+		cell: ({ row }) => {
+			const amount = parseFloat(row.getValue("amount"));
+
+			const formatted = new Intl.NumberFormat("en-US", {
+				style: "currency",
+				currency: "USD",
+			}).format(amount);
+
+			return (
+				<div className="text-customGreen px-2 text-center py-1 rounded-md bg-green-100 hover:bg-green-200">
+					{formatted}
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "id",
+		header: "",
+		cell: ({ row }) => {
+			console.log(row.original);
+			const {
+				email,
+				carType,
+				vehicleRegistrationNumber,
+				serviceType,
+				date,
+				time,
+				description,
+				amount,
+			} = row.original;
+
+			const formattedAmount = new Intl.NumberFormat("en-US", {
+				style: "currency",
+				currency: "USD",
+			}).format(parseFloat(amount));
+
+			// const fullname = `${firstname} + ${lastname}`;
+			return (
+				<Dialog>
+					<DialogTrigger asChild>
+						<button className="text-blue-400 px-2 py-1 rounded-md cursor-pointer bg-blue-100 hover:bg-blue-200">
+							View
+						</button>
+					</DialogTrigger>
+					<DialogContent className="">
+						<DialogHeader>
+							<DialogTitle className="font-semibold text-left text-[30px] text-customGreen">
+								Booking Summary
+							</DialogTitle>
+						</DialogHeader>
+						<div className="flex flex-col gap-3">
+							<p className="text-customGreen">
+								<span className="text-black">Name - {""}</span>
+								{email}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">
+									Email address - {""}
+								</span>
+								{email}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">
+									Vehicle type - {""}
+								</span>
+								{carType}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">
+									Vehicle registration number - {""}
+								</span>
+								{vehicleRegistrationNumber}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">
+									Service - {""}
+								</span>
+								{serviceType}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">
+									Date & Time - {""}
+								</span>
+								{`${date} - ${time}`}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">
+									Description - {""}
+								</span>
+								{description}
+							</p>
+							<p className="text-customGreen">
+								<span className="text-black">Price - {""}</span>
+								{formattedAmount}
+							</p>
+						</div>
+						{/* <DialogFooter>
+								<div className="w-full flex items-center justify-around">
+									<h1>Footer</h1>
+								</div>
+							</DialogFooter> */}
+					</DialogContent>
+				</Dialog>
+			);
+		},
 	},
 ];

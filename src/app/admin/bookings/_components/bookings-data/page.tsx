@@ -4,14 +4,22 @@ import { Booking, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { AuthContext } from "@/context/AuthContext";
 import { TailSpin } from "react-loader-spinner";
+import { useRouter } from "next/navigation";
 
 export default function BookingsTable() {
-	const { userData, isLoading, setIsLoading, searchBookingsText } =
-		useContext(AuthContext);
+	const {
+		userData,
+		setUserData,
+		isLoading,
+		setIsLoading,
+		searchBookingsText,
+	} = useContext(AuthContext);
 	const [bookings, setBookings] = useState<Booking[]>([]);
 	const [pageNo, setPageNo] = useState(1);
 	const [totalBookings, setTotalBookings] = useState(0);
 	const pageSize = 10;
+
+	const router = useRouter();
 
 	const data = [
 		{
@@ -135,6 +143,15 @@ export default function BookingsTable() {
 		}
 		setIsLoading(false);
 	};
+
+	useEffect(() => {
+		const storedUser = localStorage.getItem("user");
+		if (storedUser) {
+			setUserData(JSON.parse(storedUser));
+		} else {
+			router.push("/login"); // Redirect to login if no user data
+		}
+	}, [router]);
 
 	useEffect(() => {
 		if (userData && userData.access_token) {
