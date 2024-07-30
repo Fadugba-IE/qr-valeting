@@ -21,15 +21,29 @@ import {
 	DialogClose,
 } from "@/components/ui/dialog";
 import Button from "@/components/landing-page/Button";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function Sidebar() {
 	const pathname = usePathname();
+	const { isLoading, setIsLoading } = useContext(AuthContext);
 
-	function logoutUser() {
-		setTimeout(() => {
-			localStorage.removeItem("user");
-			window.location.href = "/";
-		}, 2000);
+	async function logoutUser() {
+		setIsLoading(true);
+		try {
+			const response = await fetch(
+				"https://valevaleting-32358f4be8bc.herokuapp.com/api/v1/auth/logout",
+				{ method: "POST" }
+			);
+			console.log(response);
+			if (response.status === 200) {
+				localStorage.removeItem("user");
+				window.location.href = "/";
+			}
+		} catch (error) {
+			console.log(error);
+		}
+		setIsLoading(false);
 	}
 
 	return (
@@ -127,7 +141,9 @@ export default function Sidebar() {
 						<div className="w-full flex items-center justify-around">
 							<div className="flex items-center gap-4">
 								<Button
-									btnContent="Yes"
+									btnContent={
+										isLoading ? "Signing out..." : "Yes"
+									}
 									btnStyles="bg-customGreen border-none hover:bg-lightGreen text-white rounded-lg cursor-pointer py-2 px-6"
 									btnType="button"
 									handleSubmit={() => logoutUser()}
@@ -137,7 +153,6 @@ export default function Sidebar() {
 										btnContent="Cancel"
 										btnStyles="bg-customGreen hover:bg-lightGreen text-white rounded-lg cursor-pointer py-2 px-6"
 										btnType="button"
-										// handleSubmit={() => router.push("/book-service")}
 									/>
 								</DialogClose>
 							</div>

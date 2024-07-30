@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CircleUserRound, Search } from "lucide-react";
 import Image from "next/image";
 import { Camera, Dropdown } from "@/assets/icons";
@@ -23,17 +23,40 @@ import {
 } from "@/components/ui/dialog";
 import Button from "@/components/landing-page/Button";
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
+import QrScanner from "./QrScanner";
 
 export default function Header() {
-	const { userData, searchBookingsText, setSearchBookingsText } =
-		useContext(AuthContext);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	function logoutUser() {
-		setTimeout(() => {
-			localStorage.removeItem("user");
-			window.location.href = "/";
-		}, 2000);
+	const {
+		userData,
+		searchBookingsText,
+		setSearchBookingsText,
+		isLoading,
+		setIsLoading,
+	} = useContext(AuthContext);
+
+	async function logoutUser() {
+		setIsLoading(true);
+		try {
+			const response = await fetch(
+				"https://valevaleting-32358f4be8bc.herokuapp.com/api/v1/auth/logout",
+				{ method: "POST" }
+			);
+			console.log(response);
+			if (response.status === 200) {
+				localStorage.removeItem("user");
+				window.location.href = "/";
+			}
+		} catch (error) {
+			console.log(error);
+		}
+		setIsLoading(false);
 	}
+
+	const handleScanSuccess = () => {
+		setIsModalOpen(false);
+	};
 
 	return (
 		<div className="w-full h-auto md:h-[12%] bg-white border py-2 px-6 flex flex-col-reverse gap-2 md:gap-0 md:flex-row items-center justify-between">
@@ -48,11 +71,23 @@ export default function Header() {
 				/>
 			</div>
 			<div className="flex items-center gap-4">
-				<Image
-					src={Camera}
-					alt="camera-icon"
-					className="cursor-pointer"
-				/>
+				<Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+					<DialogTrigger asChild>
+						<Image
+							src={Camera}
+							alt="camera-icon"
+							className="cursor-pointer"
+						/>
+					</DialogTrigger>
+					<DialogContent className="sm:max-w-[425px] text-center">
+						<DialogHeader>
+							<DialogTitle className="text-center text-xl md:text-2xl">
+								Scan Customer's QR Code
+							</DialogTitle>
+						</DialogHeader>
+						<QrScanner handleScanSuccess={handleScanSuccess} />
+					</DialogContent>
+				</Dialog>
 				<CircleUserRound className="h-6 w-6 text-customGreen" />
 				<div className="flex flex-col cursor-pointer">
 					<h1 className="text-[12px] font-semibold">
@@ -62,13 +97,11 @@ export default function Header() {
 				</div>
 				<DropdownMenu>
 					<DropdownMenuTrigger>
-						<button className="cursor-pointer">
-							<Image
-								src={Dropdown}
-								alt="dropdown-icon"
-								className="h-8 w-8"
-							/>
-						</button>
+						<Image
+							src={Dropdown}
+							alt="dropdown-icon"
+							className="h-8 w-8 cursor-pointer"
+						/>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
 						<Dialog>
@@ -87,7 +120,11 @@ export default function Header() {
 									<div className="w-full flex items-center justify-around">
 										<div className="flex items-center gap-4">
 											<Button
-												btnContent="Yes"
+												btnContent={
+													isLoading
+														? "Signing out..."
+														: "Yes"
+												}
 												btnStyles="bg-customGreen border-none hover:bg-lightGreen text-white rounded-lg cursor-pointer py-2 px-6"
 												btnType="button"
 												handleSubmit={() =>
