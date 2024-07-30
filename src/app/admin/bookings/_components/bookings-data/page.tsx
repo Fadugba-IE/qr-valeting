@@ -112,10 +112,6 @@ export default function BookingsTable() {
 		},
 	];
 
-	if (userData) {
-		console.log(userData.access_token);
-	}
-
 	const fetchData = async (page: number) => {
 		if (!userData || !userData.access_token) {
 			console.log("Access token is not available.");

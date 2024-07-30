@@ -105,7 +105,6 @@ const AdminDashboard = () => {
 						>
 							<CartesianGrid vertical={false} />
 							<XAxis
-								// height={200}
 								dataKey="month"
 								tickLine={false}
 								axisLine={false}
@@ -153,7 +152,6 @@ const AdminDashboard = () => {
 						>
 							<CartesianGrid vertical={false} />
 							<XAxis
-								// height={200}
 								dataKey="month"
 								tickLine={false}
 								axisLine={false}

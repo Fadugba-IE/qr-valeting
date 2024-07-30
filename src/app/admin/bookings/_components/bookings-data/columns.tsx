@@ -3,11 +3,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import {
 	Dialog,
 	DialogContent,
-	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-	DialogClose,
 } from "@/components/ui/dialog";
 
 export type Booking = {
@@ -87,9 +85,9 @@ export const columns: ColumnDef<Booking>[] = [
 			return (
 				<Dialog>
 					<DialogTrigger asChild>
-						<button className="text-blue-400 px-2 py-1 rounded-md cursor-pointer bg-blue-100 hover:bg-blue-200">
+						<div className="text-blue-400 px-2 py-1 rounded-md cursor-pointer bg-blue-100 hover:bg-blue-200">
 							View
-						</button>
+						</div>
 					</DialogTrigger>
 					<DialogContent className="">
 						<DialogHeader>
@@ -143,11 +141,6 @@ export const columns: ColumnDef<Booking>[] = [
 								{formattedAmount}
 							</p>
 						</div>
-						{/* <DialogFooter>
-								<div className="w-full flex items-center justify-around">
-									<h1>Footer</h1>
-								</div>
-							</DialogFooter> */}
 					</DialogContent>
 				</Dialog>
 			);
