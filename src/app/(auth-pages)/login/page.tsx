@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
 	const { toast } = useToast();
-	const { isLoading, setIsLoading } = useContext(AuthContext);
+	const { isLoading, setIsLoading, setUserData } = useContext(AuthContext);
 
 	const router = useRouter();
 
@@ -76,6 +76,7 @@ export default function Login() {
 
 			if (responseData.status === "SUCCESS") {
 				localStorage.setItem("user", JSON.stringify(responseData.data));
+				setUserData(responseData.data);
 				setIsLoading(false);
 				toast({
 					variant: "success",
@@ -99,7 +100,7 @@ export default function Login() {
 	};
 
 	return (
-		<div className="md:h-[120vh] md:w-full md:bg-customGreen md:flex justify-around items-center md:px-2">
+		<div className="auth-bg bg-customGreen md:h-[120vh] md:w-full md:flex justify-around items-center md:px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="h-auto w-full md:w-[450px] bg-white md:rounded-xl px-8 md:px-14 py-8 md:py-14"

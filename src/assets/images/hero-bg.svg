@@ -1,0 +1,41 @@
+<svg width="613" height="556" viewBox="0 0 613 556" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect y="47" width="144" height="125" fill="url(#pattern0_2549_12568)" fill-opacity="0.2"/>
+<rect y="47" width="144" height="125" fill="url(#pattern1_2549_12568)" fill-opacity="0.2"/>
+<rect y="47" width="144" height="125" fill="url(#pattern2_2549_12568)" fill-opacity="0.2"/>
+<rect x="226" y="431" width="144" height="125" fill="url(#pattern3_2549_12568)" fill-opacity="0.2"/>
+<rect x="226" y="431" width="144" height="125" fill="url(#pattern4_2549_12568)" fill-opacity="0.2"/>
+<rect x="226" y="431" width="144" height="125" fill="url(#pattern5_2549_12568)" fill-opacity="0.2"/>
+<rect x="469" width="144" height="125" fill="url(#pattern6_2549_12568)" fill-opacity="0.2"/>
+<rect x="469" width="144" height="125" fill="url(#pattern7_2549_12568)" fill-opacity="0.2"/>
+<rect x="469" width="144" height="125" fill="url(#pattern8_2549_12568)" fill-opacity="0.2"/>
+<defs>
+<pattern id="pattern0_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern1_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern2_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern3_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern4_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern5_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern6_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern7_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<pattern id="pattern8_2549_12568" patternContentUnits="objectBoundingBox" width="0.555556" height="0.64">
+<use xlink:href="#image0_2549_12568" transform="scale(0.00694444 0.008)"/>
+</pattern>
+<image id="image0_2549_12568" width="80" height="80" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAImSURBVHgB7d1RbtpAEMbxGSr1PM0N2jtAVEGlkpM0OUmo1KAqzh3SG7TnqVRtdyygttldlr7sSP7/XgzYvHxiwZa/EbrahCAHKrJ9ftKvgqzbTfgcA9sdny+GO22HHSBImoZnFtODCDEtFZ5ZxMTupi8S4lguPMtObbtah238Anyc7uc7sRxet9edHp/nQpTfctN1+ktmaPkpvNcgr2c7DuHZw9N3YP/CZDnH3+eHuYZnXr7pj/jpG6/AQXhJ9km0U5vlOtwLestN2Fkm/SqtEQ98Jxix5SwAAAAAAAAAAAAA5mz5sf624Wrl57brQhyIN60f9Y281hSa+mPeys/bdfgiDqg0ZuHFzfb4vFRomhZ9NMj9814fpKGmAebKO6kQCy2pm27frr/TdAlbeaemn3ihYta0/NR8CZtSP9G2pX6eNOYiQJPtJ6Y4Cc+4CdBUhegoPOMqQFMM0Vl4xsV54JCqhP/Z14qrT2D213bAW/HdTYA14R15CtFFgKXzvH7reASjeYCX5jDsoec5FpeXcqlf21yI4Y98ePker2gaaX4pVzuHkZxjie9tGZ4b18xhnOZY4nsE/1wzh8HMBgAAAAAAAAAAADB718xszEUuk7NmgnVVbGbjMH4AKc+xjLoxiaLPrnvSO5mxS3MspwBzLanW5Z2WauZY+iVcqpjNubxTM8eiNf28uSv1E3X4ZwQnhHcmF+J5P5DwklL9RDMOkPCKUiH+BbQTUBcFWE0mAAAAAElFTkSuQmCC"/>
+</defs>
+</svg>

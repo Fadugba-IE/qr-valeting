@@ -5,8 +5,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "./Button";
 import { Address, DotIcon, Email, Phone } from "@/assets/icons";
+import { useToast } from "../ui/use-toast";
 
 export default function Contact() {
+	const { toast } = useToast();
 	const schema = z.object({
 		fullName: z.string().min(1, { message: "Full name is required" }),
 		email: z.string().email({ message: "Invalid email address" }),
@@ -24,14 +26,19 @@ export default function Contact() {
 	});
 
 	const onSubmit = (data: any) => {
-		console.log(data);
-		reset();
+		toast({
+			variant: "success",
+			description: "your have successfully sent a message to the admin.",
+		});
+		setTimeout(() => {
+			reset();
+		}, 2000);
 	};
 
 	return (
 		<div
 			id="contact"
-			className="bg-white h-auto w-full px-14 py-14 text-customGreen relative"
+			className="bg-white h-auto w-full px-8 md:px-14 py-14 text-customGreen relative"
 		>
 			<div>
 				<Image src={DotIcon} alt="white-dot-grid" />

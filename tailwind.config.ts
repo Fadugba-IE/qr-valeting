@@ -18,6 +18,10 @@ const config = {
 			},
 		},
 		extend: {
+			backgroundImage: {
+				"custom-image":
+					"url('C:UsersADMINDesktopprojects\react_projects\next-projectsqr-valetingsrcassetsimageshero-bg.svg')",
+			},
 			screens: {
 				// xs: "300px",
 			},

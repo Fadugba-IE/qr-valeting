@@ -106,7 +106,7 @@ export default function Header() {
 					<DropdownMenuContent>
 						<Dialog>
 							<DialogTrigger asChild>
-								<DropdownMenuLabel className="text-center">
+								<DropdownMenuLabel className="text-center cursor-pointer">
 									LogOut
 								</DropdownMenuLabel>
 							</DialogTrigger>

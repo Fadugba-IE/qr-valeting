@@ -15,7 +15,7 @@ export default function Header() {
 	const { userData } = useContext(AuthContext);
 
 	return (
-		<div className="w-full shadow-md px-10 md:px-14 py-2 flex items-center justify-between fixed z-10 bg-white">
+		<div className="w-full shadow-md px-8 md:px-14 py-2 flex items-center justify-between fixed z-10 bg-white">
 			<Link href="/">
 				<Image src={NavLogo} alt="logo" />
 			</Link>

@@ -5,7 +5,7 @@ export default function AboutSection() {
 	return (
 		<div
 			id="about"
-			className="bg-customGreen h-auto w-full px-14 py-14 text-white relative"
+			className="bg-customGreen h-auto w-full px-8 md:px-14 py-14 text-white relative"
 		>
 			<div className="">
 				<Image src={WhiteDotGrid} alt="white-dot-grid" />

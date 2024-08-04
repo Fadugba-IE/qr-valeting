@@ -113,7 +113,7 @@ export default function SignUp() {
 	};
 
 	return (
-		<div className="h-auto w-full md:py-20 md:bg-customGreen md:flex justify-around items-center md:px-2">
+		<div className="auth-bg h-auto w-full md:py-20 md:bg-customGreen md:flex justify-around items-center md:px-2">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="h-auto w-full md:w-[450px] bg-white  md:rounded-xl px-8 md:px-14 py-8 md:py-14"
