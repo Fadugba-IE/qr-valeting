@@ -13,14 +13,14 @@ export default function HeroSection() {
 	return (
 		<div
 			id="home"
-			className=" w-full pt-[150px] md:pt-[180px] md:pb-[100px] px-10 md:px-14 flex flex-col md:flex-row items-center justify-between md:gap-6 gap-10"
+			className=" w-full pt-[150px] md:pt-[180px] md:pb-[100px] px-8 md:px-14 flex flex-col md:flex-row items-center justify-between md:gap-6 gap-10"
 		>
 			<div className="w-full md:w-[60%] h-auto">
-				<div className="text-[50px] md:text-[80px] text-customGreen leading-[55px] md:leading-none">
+				<div className="text-[40px] md:text-[80px] text-customGreen leading-[55px] md:leading-none">
 					Washing your car has never{" "}
 					<span className="text-customBlack">been</span> easier.
 				</div>
-				<p className="text-[30px] md:text-[40px] md:leading-none mt-10 md:w-[550px]">
+				<p className="text-[25px] md:text-[40px] md:leading-none mt-3 md:mt-10 md:w-[550px]">
 					We providing high-quality car wash services.
 				</p>
 				<div className="flex items-center gap-5 mt-10">
@@ -40,7 +40,7 @@ export default function HeroSection() {
 					)}
 				</div>
 			</div>
-			<div className="w-full md:w-[40%] h-auto flex items-center justify-center gap-5 mb-[50px] md:mb-[20px]">
+			<div className="hero-bg w-full md:w-[40%] h-auto flex items-center justify-center gap-5 mb-[50px] md:mb-[20px]">
 				<Image src={CarOne} alt="car1" width={150} height={150} />
 				<div className="flex flex-col gap-5">
 					<Image src={CarTwo} alt="car2" width={150} height={150} />

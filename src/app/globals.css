@@ -80,3 +80,17 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+.hero-bg {
+	background-image: url(../assets//images//hero-bg.svg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.auth-bg {
+	background-image: url(../assets//images//Shape2.svg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}

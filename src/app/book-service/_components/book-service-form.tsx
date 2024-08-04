@@ -150,7 +150,9 @@ export default function BookServiceForm() {
 	};
 
 	const handleDateSelect = (selectedDate: any) => {
-		if (selectedDate >= todaysDate) {
+		const selectedDateOnly = new Date(selectedDate.setHours(0, 0, 0, 0));
+		const todaysDateOnly = new Date(todaysDate.setHours(0, 0, 0, 0));
+		if (selectedDateOnly >= todaysDateOnly) {
 			setDate(selectedDate);
 		} else {
 			toast({
