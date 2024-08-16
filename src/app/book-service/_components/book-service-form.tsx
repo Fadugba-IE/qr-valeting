@@ -34,7 +34,6 @@ const stripePromise = loadStripe(
 
 export default function BookServiceForm() {
 	const { toast } = useToast();
-	// const amount = 49.99;
 
 	const [date, setDate] = useState<Date>();
 	const [step, setStep] = useState(1);
@@ -70,7 +69,7 @@ export default function BookServiceForm() {
 
 	const todaysDate = new Date();
 	const formattedDate = date
-		? date.toLocaleDateString()
+		? format(date, "dd/MM/yyyy")
 		: "No date available";
 	const formattedTime = time ? time : "No time available";
 
@@ -99,23 +98,6 @@ export default function BookServiceForm() {
 	};
 
 	const validateStepOne = () => {
-		if (
-			!bookingInfo.firstName ||
-			!bookingInfo.lastName ||
-			!bookingInfo.email ||
-			!bookingInfo.phoneNumber ||
-			!bookingInfo.description ||
-			!bookingInfo.vehicleRegNo
-		) {
-			toast({
-				variant: "destructive",
-				description: "All fields are required!",
-			});
-		} else {
-			setStep((prevStep) => prevStep + 1);
-		}
-	};
-	const validateStepTwo = () => {
 		if (!service) {
 			toast({
 				variant: "destructive",
@@ -125,7 +107,8 @@ export default function BookServiceForm() {
 			setStep((prevStep) => prevStep + 1);
 		}
 	};
-	const validateStepThree = () => {
+
+	const validateStepTwo = () => {
 		if (!vehicleType || !date || !time) {
 			toast({
 				variant: "destructive",
@@ -143,6 +126,24 @@ export default function BookServiceForm() {
 				variant: "destructive",
 				description:
 					"Please select a time between 9:00:00 AM - 4:00:00 PM",
+			});
+		} else {
+			setStep((prevStep) => prevStep + 1);
+		}
+	};
+
+	const validateStepThree = () => {
+		if (
+			!bookingInfo.firstName ||
+			!bookingInfo.lastName ||
+			!bookingInfo.email ||
+			!bookingInfo.phoneNumber ||
+			!bookingInfo.description ||
+			!bookingInfo.vehicleRegNo
+		) {
+			toast({
+				variant: "destructive",
+				description: "All fields are required!",
 			});
 		} else {
 			setStep((prevStep) => prevStep + 1);
@@ -257,6 +258,191 @@ export default function BookServiceForm() {
 							</div>
 							<div className="hidden md:flex md:w-full md:h-[1px] bg-[#EFF0F6] mt-10"></div>
 							{step === 1 && (
+								<div className="md:mt-10">
+									<div className="flex flex-col md:gap-3">
+										<h1 className="text-lg md:text-xl font-bold">
+											Our Services
+										</h1>
+										<p className="text-[#6F6C90] text-sm md:text-lg">
+											Please select which service you are
+											interested in.
+										</p>
+									</div>
+									<div className="flex flex-wrap justify-between gap-5 mt-6">
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												service === "HandWash" &&
+													"border-2 border-customGreen"
+											)}
+											value={service}
+											onClick={() =>
+												setService("HandWash")
+											}
+											type="button"
+										>
+											HandWash
+										</button>
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												service === "MiniValet" &&
+													"border-2 border-customGreen"
+											)}
+											value={service}
+											onClick={() =>
+												setService("MiniValet")
+											}
+											type="button"
+										>
+											Mini Valet
+										</button>
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												service === "FullValet" &&
+													"border-2 border-customGreen"
+											)}
+											value={service}
+											onClick={() =>
+												setService("FullValet")
+											}
+											type="button"
+										>
+											Full Valet
+										</button>
+										{/* <button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												service === "Other" &&
+													"border-2 border-customGreen"
+											)}
+											value={service}
+											onChange={() => setService("Other")}
+											type="button"
+										>
+											Other
+										</button> */}
+									</div>
+								</div>
+							)}
+							{step === 2 && (
+								<div className="md:mt-10">
+									<div className="flex flex-col gap-3">
+										<h1 className="text-lg md:text-xl font-bold">
+											Select your vehicle type and
+											date/time
+										</h1>
+										<p className="text-[#6F6C90] text-sm md:text-lg">
+											Please select your vehicle type and
+											date/time
+										</p>
+									</div>
+									<div className="flex flex-wrap justify-between gap-5 mt-6">
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												vehicleType === "Car" &&
+													"border-2 border-customGreen"
+											)}
+											value={vehicleType}
+											onClick={() =>
+												setVehicleType("Car")
+											}
+											type="button"
+										>
+											Car
+										</button>
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												vehicleType === "SUV" &&
+													"border-2 border-customGreen"
+											)}
+											value={vehicleType}
+											onClick={() =>
+												setVehicleType("SUV")
+											}
+											type="button"
+										>
+											SUV
+										</button>
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												vehicleType === "Van" &&
+													"border-2 border-customGreen"
+											)}
+											value={vehicleType}
+											onClick={() =>
+												setVehicleType("Van")
+											}
+											type="button"
+										>
+											Van/Pickup
+										</button>
+										<button
+											className={cn(
+												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
+												vehicleType === "Caravan" &&
+													"border-2 border-customGreen"
+											)}
+											value={vehicleType}
+											onClick={() =>
+												setVehicleType("Caravan")
+											}
+											type="button"
+										>
+											Caravan
+										</button>
+									</div>
+									<div className="flex flex-col md:flex-row mr-4 items-center md:justify-center gap-2 mt-8">
+										<Popover>
+											<PopoverTrigger asChild>
+												<ShadBtn
+													variant={"outline"}
+													className={cn(
+														"justify-start text-left font-normal",
+														!date &&
+															"text-muted-foreground"
+													)}
+												>
+													<CalendarIcon className="mr-2 h-4 w-4" />
+													{date ? (
+														// format(date, "PPP")
+														format(
+															date,
+															"dd/MM/yyyy"
+														)
+													) : (
+														<span className="text-sm">
+															Pick a date
+														</span>
+													)}
+												</ShadBtn>
+											</PopoverTrigger>
+											<PopoverContent className="w-auto p-0">
+												<Calendar
+													mode="single"
+													selected={date}
+													onSelect={handleDateSelect}
+													initialFocus
+												/>
+											</PopoverContent>
+										</Popover>
+										<div>
+											<TimePicker
+												use12Hours
+												placeholder="Select a time"
+												onChange={onChange}
+												className="h-[40px] cursor-pointer"
+												format="hh:mm a"
+											/>
+										</div>
+									</div>
+								</div>
+							)}
+							{step === 3 && (
 								<div>
 									<div className="flex flex-col md:gap-3 md:mt-10">
 										<h1 className="text-xl font-bold">
@@ -378,187 +564,6 @@ export default function BookServiceForm() {
 												onChange={
 													handleBookingInfoChange
 												}
-											/>
-										</div>
-									</div>
-								</div>
-							)}
-							{step === 2 && (
-								<div className="md:mt-10">
-									<div className="flex flex-col md:gap-3">
-										<h1 className="text-lg md:text-xl font-bold">
-											Our Services
-										</h1>
-										<p className="text-[#6F6C90] text-sm md:text-lg">
-											Please select which service you are
-											interested in.
-										</p>
-									</div>
-									<div className="flex flex-wrap justify-between gap-5 mt-6">
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "HandWash" &&
-													"border-2 border-customGreen"
-											)}
-											value={service}
-											onClick={() =>
-												setService("HandWash")
-											}
-											type="button"
-										>
-											HandWash
-										</button>
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "MiniValet" &&
-													"border-2 border-customGreen"
-											)}
-											value={service}
-											onClick={() =>
-												setService("MiniValet")
-											}
-											type="button"
-										>
-											Mini Valet
-										</button>
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "FullValet" &&
-													"border-2 border-customGreen"
-											)}
-											value={service}
-											onClick={() =>
-												setService("FullValet")
-											}
-											type="button"
-										>
-											Full Valet
-										</button>
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												service === "Other" &&
-													"border-2 border-customGreen"
-											)}
-											value={service}
-											onChange={() => setService("Other")}
-											type="button"
-										>
-											Other
-										</button>
-									</div>
-								</div>
-							)}
-							{step === 3 && (
-								<div className="md:mt-10">
-									<div className="flex flex-col gap-3">
-										<h1 className="text-lg md:text-xl font-bold">
-											Select your vehicle type and
-											date/time
-										</h1>
-										<p className="text-[#6F6C90] text-sm md:text-lg">
-											Please select your vehicle type and
-											date/time
-										</p>
-									</div>
-									<div className="flex flex-wrap justify-between gap-5 mt-6">
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												vehicleType === "Car" &&
-													"border-2 border-customGreen"
-											)}
-											value={vehicleType}
-											onClick={() =>
-												setVehicleType("Car")
-											}
-											type="button"
-										>
-											Car
-										</button>
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												vehicleType === "SUV" &&
-													"border-2 border-customGreen"
-											)}
-											value={vehicleType}
-											onClick={() =>
-												setVehicleType("SUV")
-											}
-											type="button"
-										>
-											SUV
-										</button>
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												vehicleType === "Van" &&
-													"border-2 border-customGreen"
-											)}
-											value={vehicleType}
-											onClick={() =>
-												setVehicleType("Van")
-											}
-											type="button"
-										>
-											Van/Pickup
-										</button>
-										<button
-											className={cn(
-												"bg-white w-[200px] md:w-[230px] h-[70px] md:h-[150px] rounded-[20px] hover:border-2 hover:border-customGreen shadow-md",
-												vehicleType === "Caravan" &&
-													"border-2 border-customGreen"
-											)}
-											value={vehicleType}
-											onClick={() =>
-												setVehicleType("Caravan")
-											}
-											type="button"
-										>
-											Caravan
-										</button>
-									</div>
-									<div className="flex flex-col md:flex-row mr-4 items-center md:justify-center gap-2 mt-8">
-										<Popover>
-											<PopoverTrigger asChild>
-												<ShadBtn
-													variant={"outline"}
-													className={cn(
-														"justify-start text-left font-normal",
-														!date &&
-															"text-muted-foreground"
-													)}
-												>
-													<CalendarIcon className="mr-2 h-4 w-4" />
-													{date ? (
-														format(date, "PPP")
-													) : (
-														<span className="text-sm">
-															Pick a date
-														</span>
-													)}
-												</ShadBtn>
-											</PopoverTrigger>
-											<PopoverContent className="w-auto p-0">
-												<Calendar
-													mode="single"
-													selected={date}
-													onSelect={handleDateSelect}
-													initialFocus
-												/>
-											</PopoverContent>
-										</Popover>
-										<div>
-											<TimePicker
-												use12Hours
-												placeholder="Select a time"
-												onChange={onChange}
-												className="h-[40px] cursor-pointer"
-												format="hh:mm:ss A"
 											/>
 										</div>
 									</div>

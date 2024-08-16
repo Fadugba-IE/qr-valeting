@@ -42,9 +42,9 @@ export default function SignUp() {
 				message: "Password must contain a special character",
 			})
 			.regex(/\d/, { message: "Password must contain a number" }),
-		role: z.enum(["ADMIN", "USER"], {
-			message: "Role must be either ADMIN or USER",
-		}),
+		// role: z.enum(["ADMIN", "USER"], {
+		// 	message: "Role must be either ADMIN or USER",
+		// }),
 	});
 
 	const {
@@ -65,7 +65,6 @@ export default function SignUp() {
 		!watchAllFields.lastname ||
 		!watchAllFields.emailAddress ||
 		!watchAllFields.password ||
-		!watchAllFields.role ||
 		Object.keys(errors).length > 0;
 
 	const onSubmit = async (data: any) => {
@@ -83,7 +82,7 @@ export default function SignUp() {
 						lastname: data.lastname,
 						email: data.emailAddress,
 						password: data.password,
-						role: data.role,
+						role: "USER",
 					}),
 				}
 			);
@@ -204,7 +203,7 @@ export default function SignUp() {
 						</p>
 					)}
 				</div>
-				<div className="mt-4 flex flex-col gap-2">
+				{/* <div className="mt-4 flex flex-col gap-2">
 					<label
 						htmlFor="role"
 						className="text-customGreen font-medium"
@@ -235,7 +234,7 @@ export default function SignUp() {
 							{errors.role.message as string}
 						</p>
 					)}
-				</div>
+				</div> */}
 				<div className="mt-8 flex justify-end">
 					<div className="text-sm">
 						Already have an account?{" "}
