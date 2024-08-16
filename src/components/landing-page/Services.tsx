@@ -106,7 +106,12 @@ export default function Services() {
 															<HoverCardContent>
 																{service.extrasContent.map(
 																	(extra) => (
-																		<p className="text-customGreen mb-1 cursor-pointer rounded-sm hover:bg-gray-200 px-4 py-2">
+																		<p
+																			key={
+																				extra
+																			}
+																			className="text-customGreen mb-1 cursor-pointer rounded-sm hover:bg-gray-200 px-4 py-2"
+																		>
 																			{
 																				extra
 																			}
