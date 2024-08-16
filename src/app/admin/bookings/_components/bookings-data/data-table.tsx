@@ -101,7 +101,7 @@ export function DataTable<TData, TValue>({
 					variant="outline"
 					size="sm"
 					onClick={() => setPageNo((prev) => prev - 1)}
-					disabled={pageNo === 1}
+					disabled={pageNo === 0}
 				>
 					Previous
 				</Button>

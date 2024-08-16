@@ -3,7 +3,11 @@ type ServiceCard = {
 	image: any;
 	title: string;
 	price: number;
-	description: string;
+	descriptionOne: string;
+	descriptionTwo: string;
+	descriptionThree: string;
+	extras: string;
+	extrasContent: string[];
 };
 
 type SuccessPaymentType = {

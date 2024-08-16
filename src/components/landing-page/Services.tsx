@@ -9,6 +9,11 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { servicesInfo } from "@/data/services";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
@@ -38,9 +43,9 @@ export default function Services() {
 						{servicesInfo.map((service) => (
 							<CarouselItem
 								key={service.id}
-								className="md:basis-1/2 lg:basis-1/3 rounded-xl"
+								className="md:basis-1/2 lg:basis-1/3 rounded-xl p-2"
 							>
-								<div className="p-1">
+								<div className="p-2">
 									<Card className="bg-[#f1f0f0] rounded-[20px]">
 										<CardContent className=" p-6">
 											<Image
@@ -51,7 +56,7 @@ export default function Services() {
 												<h2 className="font-bold">
 													{service.title}
 												</h2>
-												<p>${service.price}</p>
+												{/* <p>${service.price}</p> */}
 											</div>
 											<div className="mt-5 flex flex-col gap-3">
 												<div className="flex items-center gap-3">
@@ -59,14 +64,29 @@ export default function Services() {
 														src={Good}
 														alt="good-icon"
 													/>
-													<p>Hand Wash</p>
+													<p>
+														{service.descriptionOne}
+													</p>
 												</div>
 												<div className="flex items-center gap-3">
 													<Image
 														src={Good}
 														alt="good-icon"
 													/>
-													<p>Tyre Shine</p>
+													<p>
+														{service.descriptionTwo}
+													</p>
+												</div>
+												<div className="flex items-center gap-3">
+													<Image
+														src={Good}
+														alt="good-icon"
+													/>
+													<p>
+														{
+															service.descriptionThree
+														}
+													</p>
 												</div>
 												<div className="flex items-center gap-3">
 													<Image
@@ -75,11 +95,31 @@ export default function Services() {
 													/>
 													<p>
 														Wax & Dry Door Shuts{" "}
-														<span className="text-customGreen">
-															{
-																service.description
-															}
-														</span>
+														<HoverCard>
+															<HoverCardTrigger>
+																<span className="text-customGreen cursor-pointer">
+																	{
+																		service.extras
+																	}
+																</span>
+															</HoverCardTrigger>
+															<HoverCardContent>
+																{service.extrasContent.map(
+																	(extra) => (
+																		<p
+																			key={
+																				extra
+																			}
+																			className="text-customGreen mb-1 cursor-pointer rounded-sm hover:bg-gray-200 px-4 py-2"
+																		>
+																			{
+																				extra
+																			}
+																		</p>
+																	)
+																)}
+															</HoverCardContent>
+														</HoverCard>
 													</p>
 												</div>
 											</div>

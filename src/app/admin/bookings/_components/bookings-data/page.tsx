@@ -15,7 +15,7 @@ export default function BookingsTable() {
 		searchBookingsText,
 	} = useContext(AuthContext);
 	const [bookings, setBookings] = useState<Booking[]>([]);
-	const [pageNo, setPageNo] = useState(1);
+	const [pageNo, setPageNo] = useState(0);
 	const [totalBookings, setTotalBookings] = useState(0);
 	const pageSize = 10;
 
