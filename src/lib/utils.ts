@@ -7,16 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 
 export function selectPrice(serviceType: string) {
 	if (serviceType?.toLowerCase() === "handwash") {
-		return 100;
+		return [8, 10, 15, 20];
 	} else if (serviceType?.toLowerCase() === "minivalet") {
-		return 200;
+		return [20, 25, 35, 40];
 	} else if (serviceType?.toLowerCase() === "fullvalet") {
-		return 200;
-	} else if (serviceType?.toLowerCase() === "other") {
-		return 200;
-	} else {
-		return null;
+		return [55, 65, 70, 75];
 	}
+	return [0];
 }
 
 export function convertToSubcurrency(amount: number | null, factor = 100) {

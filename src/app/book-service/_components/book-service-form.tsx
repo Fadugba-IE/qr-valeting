@@ -64,8 +64,9 @@ export default function BookServiceForm() {
 		vehicleRegNo: "",
 	});
 
-	const [service, setService] = useState("");
+	const [service, setService] = useState<string>("");
 	const [vehicleType, setVehicleType] = useState("");
+	const [amount, setAmount] = useState(0);
 
 	const todaysDate = new Date();
 	const formattedDate = date
@@ -77,8 +78,6 @@ export default function BookServiceForm() {
 		const { name, value } = e.target;
 		setBookingInfo((prev) => ({ ...prev, [name]: value }));
 	};
-
-	const amount = selectPrice(service);
 
 	const handleSubmit = () => {
 		const bookingData = {
@@ -281,7 +280,7 @@ export default function BookServiceForm() {
 											}
 											type="button"
 										>
-											HandWash
+											Hand Wash
 										</button>
 										<button
 											className={cn(
@@ -346,12 +345,19 @@ export default function BookServiceForm() {
 													"border-2 border-customGreen"
 											)}
 											value={vehicleType}
-											onClick={() =>
-												setVehicleType("Car")
-											}
+											onClick={() => {
+												setVehicleType("Car");
+												setAmount(
+													selectPrice(service)[0]
+												);
+											}}
 											type="button"
 										>
-											Car
+											Car{" "}
+											<span className="text-sm">
+												{" "}
+												(${selectPrice(service)[0]})
+											</span>
 										</button>
 										<button
 											className={cn(
@@ -360,12 +366,19 @@ export default function BookServiceForm() {
 													"border-2 border-customGreen"
 											)}
 											value={vehicleType}
-											onClick={() =>
-												setVehicleType("SUV")
-											}
+											onClick={() => {
+												setVehicleType("SUV");
+												setAmount(
+													selectPrice(service)[1]
+												);
+											}}
 											type="button"
 										>
-											SUV
+											SUV{" "}
+											<span className="text-sm">
+												{" "}
+												(${selectPrice(service)[1]})
+											</span>
 										</button>
 										<button
 											className={cn(
@@ -374,12 +387,19 @@ export default function BookServiceForm() {
 													"border-2 border-customGreen"
 											)}
 											value={vehicleType}
-											onClick={() =>
-												setVehicleType("Van")
-											}
+											onClick={() => {
+												setVehicleType("Van");
+												setAmount(
+													selectPrice(service)[2]
+												);
+											}}
 											type="button"
 										>
-											Van/Pickup
+											Van/Pickup{" "}
+											<span className="text-sm">
+												{" "}
+												(${selectPrice(service)[2]})
+											</span>
 										</button>
 										<button
 											className={cn(
@@ -388,12 +408,19 @@ export default function BookServiceForm() {
 													"border-2 border-customGreen"
 											)}
 											value={vehicleType}
-											onClick={() =>
-												setVehicleType("Caravan")
-											}
+											onClick={() => {
+												setVehicleType("Caravan");
+												setAmount(
+													selectPrice(service)[3]
+												);
+											}}
 											type="button"
 										>
-											Caravan
+											Caravan{" "}
+											<span className="text-sm">
+												{" "}
+												(${selectPrice(service)[3]})
+											</span>
 										</button>
 									</div>
 									<div className="flex flex-col md:flex-row mr-4 items-center md:justify-center gap-2 mt-8">
@@ -582,81 +609,80 @@ export default function BookServiceForm() {
 											Proceed to pay for your booking
 										</h1>
 									</div>
-									<div className="flex gap-3 flex-col md:flex-row justify-between mt-3 md:mt-5">
-										<div className="flex flex-col gap-3">
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Firstname -{" "}
+									<div className="flex gap-3 md:gap-0 flex-col md:flex-row justify-between mt-3 md:mt-5">
+										<div className="flex flex-col gap-3 w-[250px]">
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
+													First name
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{bookingInfo.firstName}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Lastname -{" "}
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
+													Last name
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{bookingInfo.lastName}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Email -{" "}
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
+													Email
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{bookingInfo.email}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold ">
-													Phone number -{" "}
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold ">
+													Phone number
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{bookingInfo.phoneNumber}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold ">
-													Service -{" "}
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold ">
+													Service
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{service}
 												</p>
 											</div>
 										</div>
-										<div className="flex flex-col gap-3">
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Date & time -{" "}
+										<div className="flex flex-col gap-3 w-[250px]">
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
+													Date & time
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{formattedDate} -{" "}
 													{formattedTime}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Description -{" "}
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
+													Description
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{bookingInfo.description}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
-													Vehicle type -{" "}
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
+													Vehicle type
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{vehicleType}
 												</p>
 											</div>
-											<div className="flex flex-col gap-1">
-												<h2 className="text-sm md:text-lg font-bold">
+											<div className="flex flex-col">
+												<h2 className="text-sm font-bold">
 													Vehicle registration number
-													-
 												</h2>
-												<p className="text-customGreen text-sm md:text-lg">
+												<p className="text-customGreen text-sm">
 													{bookingInfo.vehicleRegNo}
 												</p>
 											</div>
@@ -666,17 +692,17 @@ export default function BookServiceForm() {
 														src={Dollar}
 														alt="dollar"
 													/>
-													<h2 className="text-sm md:text-lg font-bold">
+													<h2 className="text-sm font-bold">
 														Price
 													</h2>
 												</div>
-												<p className="text-customGreen text-sm md:text-lg">
-													USD {amount}
+												<p className="text-customGreen text-sm">
+													${amount} (USD)
 												</p>
 											</div>
 										</div>
 									</div>
-									<div className="flex justify-center mt-4">
+									<div className="flex justify-center mt-5">
 										<Button
 											btnContent="Proceed to pay"
 											btnStyles="text-sm md:text-lg bg-customGreen hover:bg-lightGreen text-white rounded-3xl cursor-pointer py-3 px-10 md:px-12"
@@ -748,7 +774,9 @@ export default function BookServiceForm() {
 					</div>
 					<div className="w-full md:w-1/2 px-10 py-10 mt-5">
 						<div className="flex justify-around mb-5">
-							<h1 className="font-bold">Proceed to checkout</h1>
+							<h1 className="font-bold text-xl md:text-2xl">
+								Proceed to checkout
+							</h1>
 						</div>
 						<Elements
 							stripe={stripePromise}
