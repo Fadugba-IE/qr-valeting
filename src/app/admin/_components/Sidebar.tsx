@@ -53,7 +53,7 @@ export default function Sidebar() {
 					<Image src={NavLogo} alt="logo" priority />
 				</Link>
 				<div className="flex flex-col gap-2">
-					<Link
+					{/* <Link
 						href="/admin"
 						className="bg-white flex gap-4 cursor-pointer"
 					>
@@ -79,7 +79,7 @@ export default function Sidebar() {
 							/>
 							<p className="text-sm">Dashboard</p>
 						</div>
-					</Link>
+					</Link> */}
 					<Link
 						href="/admin/bookings"
 						className="bg-white flex gap-4 cursor-pointer"

@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/landing-page/Button";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { cn, selectPrice, convertToSubcurrency } from "@/lib/utils";
 import Image from "next/image";
 import { Dollar, Success } from "@/assets/icons";
@@ -23,6 +23,7 @@ import CheckoutPage from "@/components/CheckoutPage";
 import { Payment } from "@/assets/images";
 import { useToast } from "@/components/ui/use-toast";
 import moment from "moment";
+import { AuthContext } from "@/context/AuthContext";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
 	throw new Error("NEXT_PUBLIC_STRIPE_KEY is not defined");
@@ -34,6 +35,8 @@ const stripePromise = loadStripe(
 
 export default function BookServiceForm() {
 	const { toast } = useToast();
+
+	const { userData } = useContext(AuthContext);
 
 	const [date, setDate] = useState<Date>();
 	const [step, setStep] = useState(1);
@@ -56,9 +59,9 @@ export default function BookServiceForm() {
 	};
 
 	const [bookingInfo, setBookingInfo] = useState({
-		firstName: "",
-		lastName: "",
-		email: "",
+		firstName: userData !== null ? userData.first_name : "",
+		lastName: userData !== null ? userData.last_name : "",
+		email: userData !== null ? userData.email : "",
 		phoneNumber: "",
 		description: "",
 		vehicleRegNo: "",
@@ -82,7 +85,7 @@ export default function BookServiceForm() {
 	const handleSubmit = () => {
 		const bookingData = {
 			firstName: bookingInfo.firstName,
-			lastName: bookingInfo.lastName,
+			lastName: bookingInfo.firstName,
 			email: bookingInfo.email,
 			phoneNumber: bookingInfo.phoneNumber,
 			amount: amount,
@@ -356,7 +359,7 @@ export default function BookServiceForm() {
 											Car{" "}
 											<span className="text-sm">
 												{" "}
-												(${selectPrice(service)[0]})
+												(£{selectPrice(service)[0]})
 											</span>
 										</button>
 										<button
@@ -377,7 +380,7 @@ export default function BookServiceForm() {
 											SUV{" "}
 											<span className="text-sm">
 												{" "}
-												(${selectPrice(service)[1]})
+												(£{selectPrice(service)[1]})
 											</span>
 										</button>
 										<button
@@ -398,7 +401,7 @@ export default function BookServiceForm() {
 											Van/Pickup{" "}
 											<span className="text-sm">
 												{" "}
-												(${selectPrice(service)[2]})
+												(£{selectPrice(service)[2]})
 											</span>
 										</button>
 										<button
@@ -419,7 +422,7 @@ export default function BookServiceForm() {
 											Caravan{" "}
 											<span className="text-sm">
 												{" "}
-												(${selectPrice(service)[3]})
+												(£{selectPrice(service)[3]})
 											</span>
 										</button>
 									</div>
@@ -697,7 +700,7 @@ export default function BookServiceForm() {
 													</h2>
 												</div>
 												<p className="text-customGreen text-sm">
-													${amount} (USD)
+													£{amount} (GBP)
 												</p>
 											</div>
 										</div>
@@ -783,7 +786,7 @@ export default function BookServiceForm() {
 							options={{
 								mode: "payment",
 								amount: convertToSubcurrency(amount),
-								currency: "usd",
+								currency: "gbp",
 							}}
 						>
 							<CheckoutPage amount={amount ? amount : 0} />
