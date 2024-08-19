@@ -58,6 +58,7 @@ interface UserInfo {
 	email: string;
 	roles: UserRole[];
 	first_name: string;
+	last_name: string;
 	role_name: string;
 	access_token: string;
 	refresh_token: string;

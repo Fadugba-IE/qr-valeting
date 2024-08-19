@@ -83,7 +83,7 @@ export default function Login() {
 					description: "Login successful",
 				});
 				if (responseData.data.role_name === roles.admin) {
-					router.push("/admin");
+					router.push("/admin/bookings");
 				} else {
 					router.push("/book-service");
 				}

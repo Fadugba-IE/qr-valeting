@@ -38,6 +38,8 @@ export default function PaymentSuccess() {
 	useEffect(() => {
 		const bookingInfo = localStorage.getItem("bookingInfo");
 		if (bookingInfo) {
+			console.log(bookingInfo);
+
 			setBookingData(JSON.parse(bookingInfo));
 		}
 	}, []);
@@ -90,6 +92,8 @@ export default function PaymentSuccess() {
 			});
 		}, 5000);
 	}, [bookingData]);
+
+	console.log(bookingData);
 
 	return (
 		<main className="min-h-screen w-full">
