@@ -56,7 +56,7 @@ export default function Services() {
 												<h2 className="font-bold">
 													{service.title}
 												</h2>
-												{/* <p>${service.price}</p> */}
+												<p>{service.price}</p>
 											</div>
 											<div className="mt-5 flex flex-col gap-3">
 												<div className="flex items-center gap-3">
