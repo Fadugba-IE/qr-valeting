@@ -2,7 +2,7 @@ type ServiceCard = {
 	id: number;
 	image: any;
 	title: string;
-	price: number;
+	price: number | string;
 	descriptionOne: string;
 	descriptionTwo: string;
 	descriptionThree: string;
