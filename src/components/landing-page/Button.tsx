@@ -4,7 +4,7 @@ type ButtonProps = {
 	btnContent: ReactNode;
 	btnStyles: string;
 	btnType?: "submit" | "reset" | "button" | undefined;
-	handleSubmit?: any;
+	handleSubmit?: () => void;
 	isDisabled?: boolean;
 };
 

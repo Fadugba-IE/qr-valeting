@@ -11,7 +11,7 @@ export default function Bookings() {
 
 	return (
 		<div className="h-[90vh] w-full bg-[#F5F6FA] px-4 md:px-10 pt-5 pb-10 overflow-y-scroll">
-			<div className="flex md:hidden w-full items-center gap-2">
+			{/* <div className="flex md:hidden w-full items-center gap-2">
 				<Link href="/admin" className="w-1/2 flex cursor-pointer">
 					<div
 						className={cn(
@@ -51,7 +51,7 @@ export default function Bookings() {
 						<p className="text-sm">Bookings</p>
 					</div>
 				</Link>
-			</div>
+			</div> */}
 			<h1 className="mt-4 font-semibold text-2xl">Bookings</h1>
 			<BookingsTable />
 		</div>
