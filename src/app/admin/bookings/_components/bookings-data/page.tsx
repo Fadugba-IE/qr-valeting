@@ -147,7 +147,7 @@ export default function BookingsTable() {
 		} else {
 			router.push("/login"); // Redirect to login if no user data
 		}
-	}, [router]);
+	}, [router, setUserData]);
 
 	useEffect(() => {
 		if (userData && userData.access_token) {
