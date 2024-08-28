@@ -39,7 +39,7 @@ const QrScanner = ({ handleScanSuccess }: QrScannerProps) => {
 		return () => {
 			html5QrCodeScanner.clear().catch((err) => console.error(err));
 		};
-	}, [handleScanSuccess]);
+	});
 
 	const validateQRCode = async (decodedText: string) => {
 		try {
