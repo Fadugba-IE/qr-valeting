@@ -38,9 +38,11 @@ export default function PaymentSuccess() {
 	useEffect(() => {
 		const bookingInfo = localStorage.getItem("bookingInfo");
 		if (bookingInfo) {
-			console.log(bookingInfo);
-
-			setBookingData(JSON.parse(bookingInfo));
+			const parsedBookingInfo = JSON.parse(bookingInfo);
+			setBookingData(parsedBookingInfo);
+			console.log("Booking Data Loaded:", parsedBookingInfo);
+		} else {
+			console.log("No booking info found in localStorage.");
 		}
 	}, []);
 
@@ -64,10 +66,11 @@ export default function PaymentSuccess() {
 			const responseData: SuccessPaymentType = await response.json();
 			console.log(responseData);
 			setQrCode(responseData);
+			setIsLoading(false);
 		} catch (error: any) {
 			console.error("Error:", error);
+			setIsLoading(false);
 		}
-		setIsLoading(false);
 	};
 
 	const handleDownload = () => {
@@ -83,15 +86,16 @@ export default function PaymentSuccess() {
 	useEffect(() => {
 		if (bookingData) {
 			generateQRCode(bookingData);
+			console.log("GenerateQR code");
+			setTimeout(() => {
+				toast({
+					variant: "success",
+					description:
+						"An email has been sent to you to confirm your booking was successful, show the QR code to the officer at the counter.",
+				});
+			}, 5000);
 		}
-		setTimeout(() => {
-			toast({
-				variant: "success",
-				description:
-					"An email has been sent to you to confirm your booking was successful, show the QR code to the officer at the counter.",
-			});
-		}, 5000);
-	}, []);
+	}, [bookingData]);
 
 	return (
 		<main className="min-h-screen w-full">

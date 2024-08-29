@@ -15,7 +15,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import type { TimePickerProps } from "antd";
-import { Space, TimePicker } from "antd";
+import { Skeleton, Space, TimePicker } from "antd";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -773,7 +773,7 @@ export default function BookServiceForm() {
 			{step === 5 && (
 				<div className="w-full h-auto flex flex-row md:flex-row pt-[90px]">
 					<div className="hidden md:flex w-1/2">
-						<Image src={Payment} alt="payment-pic" />
+						<Image src={Payment} alt="payment-pic" priority />
 					</div>
 					<div className="w-full md:w-1/2 px-10 py-10 mt-5">
 						<div className="flex justify-around mb-5">
