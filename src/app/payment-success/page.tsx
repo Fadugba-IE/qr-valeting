@@ -91,7 +91,7 @@ export default function PaymentSuccess() {
 					"An email has been sent to you to confirm your booking was successful, show the QR code to the officer at the counter.",
 			});
 		}, 5000);
-	});
+	}, []);
 
 	return (
 		<main className="min-h-screen w-full">
