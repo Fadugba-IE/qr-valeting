@@ -1,11 +1,11 @@
 "use client";
+import { Address, DotIcon, Email, Phone } from "@/assets/icons";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "./Button";
-import { Address, DotIcon, Email, Phone } from "@/assets/icons";
 import { useToast } from "../ui/use-toast";
+import Button from "./Button";
 
 export default function Contact() {
 	const { toast } = useToast();
@@ -125,12 +125,12 @@ export default function Contact() {
 						</div>
 						<div className="flex items-center gap-3">
 							<Image src={Phone} alt="phone-icon" />
-							<p className="text-sm md:text-lg">09028272009</p>
+							<p className="text-sm md:text-lg">07909328213</p>
 						</div>
 						<div className="flex items-center gap-3">
 							<Image src={Address} alt="address-icon" />
 							<p className="text-sm md:text-lg">
-								Birmingham, United Kingdom
+								Cardiff, United Kingdom
 							</p>
 						</div>
 					</div>

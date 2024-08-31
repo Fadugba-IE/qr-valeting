@@ -18,7 +18,21 @@ export default function Testimonials() {
 					<div className="ml-[45px]">
 						<div className="flex items-center gap-3">
 							<Image src={Avatar} alt="avatar" />
-							<h2 className="text-customGreen">John Doe</h2>
+							<h2 className="text-customGreen">Ben Isaac</h2>
+						</div>
+						<Image src={Triangle} alt="triangle" />
+					</div>
+					<div className="bg-customGreen text-white p-8 w-[300px] rounded-[50px]">
+						<p>
+							“Amazing valeting services, definitely recommending this to my friends“
+						</p>
+					</div>
+				</div>
+				<div className="flex flex-col mb-10 md:mb-0">
+					<div className="ml-[45px]">
+						<div className="flex items-center gap-3">
+							<Image src={Avatar} alt="avatar" />
+							<h2 className="text-customGreen">Carey Kent</h2>
 						</div>
 						<Image src={Triangle} alt="triangle" />
 					</div>
@@ -34,31 +48,13 @@ export default function Testimonials() {
 					<div className="ml-[45px]">
 						<div className="flex items-center gap-3">
 							<Image src={Avatar} alt="avatar" />
-							<h2 className="text-customGreen">John Doe</h2>
+							<h2 className="text-customGreen">Sabah Ahmad</h2>
 						</div>
 						<Image src={Triangle} alt="triangle" />
 					</div>
 					<div className="bg-customGreen text-white p-8 w-[300px] rounded-[50px]">
 						<p>
-							“I cannot praise Mat highly enough for his hard
-							work, passion and enthusiasm in the way he dealt
-							with my car.“
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col mb-10 md:mb-0">
-					<div className="ml-[45px]">
-						<div className="flex items-center gap-3">
-							<Image src={Avatar} alt="avatar" />
-							<h2 className="text-customGreen">John Doe</h2>
-						</div>
-						<Image src={Triangle} alt="triangle" />
-					</div>
-					<div className="bg-customGreen text-white p-8 w-[300px] rounded-[50px]">
-						<p>
-							“I cannot praise Mat highly enough for his hard
-							work, passion and enthusiasm in the way he dealt
-							with my car.“
+							“As a taxi driver, i get my valeting done weekly and the services are amazing“
 						</p>
 					</div>
 				</div>
