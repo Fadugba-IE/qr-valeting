@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { AboutIcon, WhiteDotGrid } from "@/assets/icons";
+import Image from "next/image";
 
 export default function AboutSection() {
 	return (
@@ -17,7 +17,7 @@ export default function AboutSection() {
 				<Image src={AboutIcon} alt="about-icon" />
 				<div className="h-[2px] w-[200px] md:h-40 bg-[#453636] md:w-[2px]"></div>
 				<p>
-					At ZenCarWash, we're passionate about making your car shine
+					At Vale Valeting, we're passionate about making your car shine
 					inside and out. We don't just wash cars, we bring them back
 					to life. Our team of experts uses top-of-the-line equipment
 					and eco-friendly products to deliver a fast, efficient, and
