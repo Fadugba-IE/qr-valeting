@@ -22,9 +22,10 @@ export default function Testimonials() {
 						</div>
 						<Image src={Triangle} alt="triangle" />
 					</div>
-					<div className="bg-customGreen text-white p-8 w-[300px] rounded-[50px]">
+					<div className="bg-customGreen text-white p-8 h-[180px] w-[300px] rounded-[50px]">
 						<p>
-							“Amazing valeting services, definitely recommending this to my friends“
+							“Amazing valeting services, definitely recommending
+							this to my friends“
 						</p>
 					</div>
 				</div>
@@ -36,7 +37,7 @@ export default function Testimonials() {
 						</div>
 						<Image src={Triangle} alt="triangle" />
 					</div>
-					<div className="bg-customGreen text-white p-8 w-[300px] rounded-[50px]">
+					<div className="bg-customGreen text-white p-8 h-[180px] w-[300px] rounded-[50px]">
 						<p>
 							“I cannot praise Mat highly enough for his hard
 							work, passion and enthusiasm in the way he dealt
@@ -52,9 +53,10 @@ export default function Testimonials() {
 						</div>
 						<Image src={Triangle} alt="triangle" />
 					</div>
-					<div className="bg-customGreen text-white p-8 w-[300px] rounded-[50px]">
+					<div className="bg-customGreen text-white p-8 h-[180px] w-[300px] rounded-[50px]">
 						<p>
-							“As a taxi driver, i get my valeting done weekly and the services are amazing“
+							“As a taxi driver, i get my valeting done weekly and
+							the services are amazing“
 						</p>
 					</div>
 				</div>

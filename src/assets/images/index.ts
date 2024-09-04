@@ -1,4 +1,4 @@
-import CarOne from "./car1.svg";
+import CarOne from "./car1.jpeg";
 import CarTwo from "./car2.svg";
 import CarThree from "./car3.svg";
 import ServiceCar from "./service-car.svg";
