@@ -57,11 +57,11 @@ export default function Contact() {
 								{...register("fullName")}
 								name="fullName"
 								type="text"
-								placeholder="Full name"
-								className="text-sm md:text-lg rounded-3xl w-full h-[40px] border border-customGreen px-5 bg-[#F9F9F9]"
+								placeholder="Full Name"
+								className="text-sm rounded-3xl w-full h-[45px] border border-customGreen px-5 bg-[#F9F9F9]"
 							/>
 							{errors.fullName && (
-								<p className="text-red-500 mt-1 text-sm md:text-lg">
+								<p className="text-red-500 ml-5 mt-1 text-sm">
 									{errors.fullName.message as string}
 								</p>
 							)}
@@ -72,10 +72,10 @@ export default function Contact() {
 								name="email"
 								type="text"
 								placeholder="Email address"
-								className="text-sm md:text-lg rounded-3xl w-full h-[40px] border border-customGreen px-5 bg-[#F9F9F9]"
+								className="text-sm rounded-3xl w-full h-[45px] border border-customGreen px-5 bg-[#F9F9F9]"
 							/>
 							{errors.email && (
-								<p className="text-red-500 mt-1 text-sm md:text-lg">
+								<p className="text-red-500 ml-5 mt-1 text-sm">
 									{errors.email.message as string}
 								</p>
 							)}
@@ -86,10 +86,10 @@ export default function Contact() {
 								name="subjectOfMail"
 								type="text"
 								placeholder="Subject"
-								className="text-sm md:text-lg rounded-3xl w-full h-[40px] border border-customGreen px-5 bg-[#F9F9F9]"
+								className="text-sm rounded-3xl w-full h-[45px] border border-customGreen px-5 bg-[#F9F9F9]"
 							/>
 							{errors.subjectOfMail && (
-								<p className="text-red-500 mt-1 text-sm md:text-lg">
+								<p className="text-red-500 ml-5 mt-1 text-sm">
 									{errors.subjectOfMail.message as string}
 								</p>
 							)}
@@ -100,10 +100,10 @@ export default function Contact() {
 								name="message"
 								id="message"
 								placeholder="Write a brief description of your request"
-								className=" text-sm md:text-lg rounded-3xl w-full h-[240px] border border-customGreen px-5 py-3 bg-[#F9F9F9] resize-none"
+								className=" text-sm rounded-3xl w-full h-[240px] border border-customGreen px-5 py-3 bg-[#F9F9F9] resize-none"
 							></textarea>
 							{errors.message && (
-								<p className="text-red-500 mt-1 text-sm md:text-lg">
+								<p className="text-red-500 ml-5 mt-1 text-sm">
 									{errors.message.message as string}
 								</p>
 							)}

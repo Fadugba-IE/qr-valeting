@@ -15,7 +15,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import type { TimePickerProps } from "antd";
-import { Skeleton, Space, TimePicker } from "antd";
+import { TimePicker } from "antd";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
