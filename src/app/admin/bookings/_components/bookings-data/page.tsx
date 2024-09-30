@@ -131,6 +131,8 @@ export default function BookingsTable() {
 			);
 			const result = await response.json();
 			const { data, totalItems } = result.data.pageDto;
+			console.log(data);
+
 			setBookings(data);
 			setTotalBookings(totalItems);
 		} catch (error) {
