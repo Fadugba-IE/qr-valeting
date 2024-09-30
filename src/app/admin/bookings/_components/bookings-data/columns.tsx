@@ -83,6 +83,7 @@ export const columns: ColumnDef<Booking>[] = [
 				firstName,
 				lastName,
 			} = row.original;
+			console.log(firstName, lastName);
 
 			const fullName = `${firstName} ${lastName}`;
 

@@ -85,7 +85,7 @@ export default function BookServiceForm() {
 	const handleSubmit = () => {
 		const bookingData = {
 			firstName: bookingInfo.firstName,
-			lastName: bookingInfo.firstName,
+			lastName: bookingInfo.lastName,
 			email: bookingInfo.email,
 			phoneNumber: bookingInfo.phoneNumber,
 			amount: amount,
