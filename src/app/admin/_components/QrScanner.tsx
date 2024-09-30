@@ -10,12 +10,11 @@ interface QrScannerProps {
 
 const QrScanner = ({ handleScanSuccess }: QrScannerProps) => {
 	const { userData } = useContext(AuthContext);
-	const [isValidating, setIsValidating] = useState(false); // Track if validation is in progress
-	const lastScannedCode = useRef<string | null>(null); // Ref to track the last scanned code
+	const [isValidating, setIsValidating] = useState(false);
+	const lastScannedCode = useRef<string | null>(null);
 
 	useEffect(() => {
 		const onScanSuccess = (decodedText: string, decodedResult: any) => {
-			// Check if we're already validating or have scanned this code before
 			if (isValidating || lastScannedCode.current === decodedText) {
 				return;
 			}
@@ -24,8 +23,8 @@ const QrScanner = ({ handleScanSuccess }: QrScannerProps) => {
 			handleScanSuccess();
 
 			if (decodedResult) {
-				lastScannedCode.current = decodedText; // Save the last scanned code
-				validateQRCode(decodedText); // Trigger validation
+				lastScannedCode.current = decodedText;
+				validateQRCode(decodedText);
 			}
 		};
 
@@ -48,7 +47,7 @@ const QrScanner = ({ handleScanSuccess }: QrScannerProps) => {
 		return () => {
 			html5QrCodeScanner.clear().catch((err) => console.error(err));
 		};
-	}, [isValidating]); // Use isValidating as a dependency to re-render only when it changes
+	}, [isValidating]);
 
 	const validateQRCode = async (decodedText: string) => {
 		setIsValidating(true); // Block further validation attempts
@@ -80,8 +79,8 @@ const QrScanner = ({ handleScanSuccess }: QrScannerProps) => {
 		} catch (error) {
 			console.error("Error validating QR code:", error);
 		} finally {
-			setIsValidating(false); // Allow further validations after completion
-			lastScannedCode.current = null; // Reset the last scanned code to allow new scans
+			setIsValidating(false);
+			lastScannedCode.current = null;
 		}
 	};
 
