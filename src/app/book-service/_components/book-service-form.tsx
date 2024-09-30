@@ -486,7 +486,7 @@ export default function BookServiceForm() {
 									<div className="w-full flex flex-col gap-4 md:gap-0 md:flex-row justify-between mt-2 md:mt-10">
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
-												htmlFor="text"
+												htmlFor="firstName"
 												className="text-customGreen font-medium text-sm md:text-lg"
 											>
 												First name
@@ -504,7 +504,7 @@ export default function BookServiceForm() {
 										</div>
 										<div className="flex flex-col gap-2 w-full md:w-[45%]">
 											<label
-												htmlFor="text"
+												htmlFor="lastName"
 												className="text-customGreen font-medium text-sm md:text-lg"
 											>
 												Last name
